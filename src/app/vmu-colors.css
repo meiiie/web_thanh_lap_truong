@@ -1,0 +1,67 @@
+/* 🌊 VMU Brand Colors - Trường Đại học Hàng hải Việt Nam */
+
+:root {
+  /* Primary Colors */
+  --vmu-primary: #003e80;      /* Xanh dương đậm - biển cả */
+  --vmu-secondary: #00a0e3;    /* Xanh nước biển nhạt */
+  --vmu-accent: #ffc20e;       /* Vàng kim - điểm nhấn */
+  
+  /* Neutral Colors */
+  --vmu-white: #ffffff;        /* Nền trắng */
+  --vmu-gray: #f5f5f5;         /* Xám nhạt - chuyển tiếp */
+  --vmu-text: #333333;         /* Văn bản chính */
+  --vmu-text-light: #666666;   /* Văn bản phụ */
+  
+  /* Utility Colors */
+  --vmu-shadow: rgba(0, 62, 128, 0.1); /* Bóng đổ */
+  --vmu-overlay: rgba(0, 62, 128, 0.8); /* Overlay */
+  --vmu-gradient: linear-gradient(135deg, var(--vmu-primary) 0%, var(--vmu-secondary) 100%);
+  --vmu-gradient-accent: linear-gradient(135deg, var(--vmu-accent) 0%, #ffd700 100%);
+  
+  /* Semantic Colors */
+  --vmu-success: #28a745;      /* Thành công */
+  --vmu-warning: #ffc107;      /* Cảnh báo */
+  --vmu-error: #dc3545;        /* Lỗi */
+  --vmu-info: var(--vmu-secondary); /* Thông tin */
+  
+  /* Opacity Variants */
+  --vmu-primary-10: rgba(0, 62, 128, 0.1);
+  --vmu-primary-20: rgba(0, 62, 128, 0.2);
+  --vmu-primary-30: rgba(0, 62, 128, 0.3);
+  --vmu-primary-50: rgba(0, 62, 128, 0.5);
+  --vmu-primary-80: rgba(0, 62, 128, 0.8);
+  
+  --vmu-secondary-10: rgba(0, 160, 227, 0.1);
+  --vmu-secondary-20: rgba(0, 160, 227, 0.2);
+  --vmu-secondary-30: rgba(0, 160, 227, 0.3);
+  --vmu-secondary-50: rgba(0, 160, 227, 0.5);
+  
+  --vmu-accent-10: rgba(255, 194, 14, 0.1);
+  --vmu-accent-20: rgba(255, 194, 14, 0.2);
+  --vmu-accent-30: rgba(255, 194, 14, 0.3);
+  --vmu-accent-50: rgba(255, 194, 14, 0.5);
+}
+
+/* Utility Classes */
+.vmu-bg-primary { background-color: var(--vmu-primary); }
+.vmu-bg-secondary { background-color: var(--vmu-secondary); }
+.vmu-bg-accent { background-color: var(--vmu-accent); }
+.vmu-bg-white { background-color: var(--vmu-white); }
+.vmu-bg-gray { background-color: var(--vmu-gray); }
+
+.vmu-text-primary { color: var(--vmu-primary); }
+.vmu-text-secondary { color: var(--vmu-secondary); }
+.vmu-text-accent { color: var(--vmu-accent); }
+.vmu-text-white { color: var(--vmu-white); }
+.vmu-text-dark { color: var(--vmu-text); }
+.vmu-text-light { color: var(--vmu-text-light); }
+
+.vmu-border-primary { border-color: var(--vmu-primary); }
+.vmu-border-secondary { border-color: var(--vmu-secondary); }
+.vmu-border-accent { border-color: var(--vmu-accent); }
+
+.vmu-shadow { box-shadow: 0 4px 20px var(--vmu-shadow); }
+.vmu-shadow-lg { box-shadow: 0 10px 40px var(--vmu-shadow); }
+
+.vmu-gradient { background: var(--vmu-gradient); }
+.vmu-gradient-accent { background: var(--vmu-gradient-accent); }

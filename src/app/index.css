@@ -1,0 +1,1154 @@
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 135svh;
+  overflow: hidden;
+  background-color: #d3cec5;
+  font-family: "BE PRO VIETNAM", sans-serif;
+}
+
+.hero .hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero .hero-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50svh;
+  background: #1a1818;
+  background: linear-gradient(
+    360deg,
+    rgba(20, 19, 19, 1) 0%,
+    rgba(20, 19, 19, 0) 100%
+  );
+  z-index: 2;
+}
+
+.hero .hero-content {
+  position: absolute;
+  top: 50svh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--vmu-white);
+  text-align: center;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  font-family: "BE PRO VIETNAM", sans-serif;
+}
+
+.hero .hero-header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero .hero-header h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--vmu-secondary);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Coming Soon Message */
+.coming-soon-message {
+  margin: 1rem 0;
+}
+
+.coming-soon-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--vmu-accent);
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.event-date {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--vmu-white);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Countdown Timer */
+.countdown-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  backdrop-filter: blur(1rem);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.countdown-item {
+  text-align: center;
+  min-width: 80px;
+}
+
+.countdown-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--vmu-accent);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+}
+
+.countdown-label {
+  font-size: 0.9rem;
+  color: var(--vmu-gray);
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.countdown-separator {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--vmu-white);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Buttons - Cải thiện cho countdown section */
+.hero-buttons {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero .hero-tagline {
+  width: 40%;
+  color: var(--vmu-gray);
+}
+
+.hero-stats {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, var(--vmu-primary) 0%, var(--vmu-secondary) 100%);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  padding: 4rem 0;
+  overflow: hidden;
+}
+
+/* Hero Stats Background Pattern */
+.hero-stats-bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 30% 30%, rgba(255, 194, 14, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(255, 194, 14, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0, 160, 227, 0.08) 0%, transparent 70%);
+  z-index: 1;
+}
+
+.hero-stats .container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hero-stats .stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  aspect-ratio: 16/9;
+  color: var(--vmu-white);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.hero-stats .stat::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 194, 14, 0.2), transparent);
+  transition: left 0.8s ease;
+}
+
+.hero-stats .stat:hover {
+  background: rgba(255, 194, 14, 0.2);
+  border-color: rgba(255, 194, 14, 0.4);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.hero-stats .stat:hover::before {
+  left: 100%;
+}
+
+.hero-stats .stat-count,
+.hero-stats .stat-info {
+  flex: 1;
+}
+
+.hero-stats .stat-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 0.5rem 0;
+}
+
+.hero-stats .stat-info {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Counter Animation Styling */
+.counter-number {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--vmu-accent);
+  text-shadow: 0 4px 20px rgba(255, 194, 14, 0.4);
+  line-height: 1;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.hero-stats .stat:hover .counter-number {
+  color: var(--vmu-white);
+  text-shadow: 0 4px 25px rgba(255, 194, 14, 0.6);
+  transform: scale(1.05);
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-header h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--vmu-primary);
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: var(--vmu-text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* History Milestones */
+.history-milestones {
+  width: 100vw;
+  padding: 10rem 0;
+  background-color: var(--vmu-gray);
+}
+
+.milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.milestone-item {
+  background: var(--vmu-white);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px var(--vmu-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.milestone-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px var(--vmu-shadow);
+}
+
+.milestone-year {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--vmu-primary);
+  margin-bottom: 1rem;
+}
+
+.milestone-content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--vmu-text);
+  margin-bottom: 0.5rem;
+}
+
+.milestone-content p {
+  color: var(--vmu-text-light);
+  line-height: 1.6;
+}
+
+/* Anniversary Program */
+.anniversary-program {
+  width: 100vw;
+  padding: 10rem 0;
+  background-color: var(--vmu-white);
+}
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.program-item {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: var(--vmu-gray);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.program-item:hover {
+  transform: translateY(-5px);
+  background: var(--vmu-secondary);
+  color: var(--vmu-white);
+}
+
+.program-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.program-icon .icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--vmu-primary);
+  transition: color 0.3s ease;
+}
+
+.program-item:hover .program-icon .icon {
+  color: var(--vmu-white);
+}
+
+.program-item h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--vmu-text);
+}
+
+.program-item p {
+  color: var(--vmu-text-light);
+  line-height: 1.6;
+}
+
+.program-item:hover h3,
+.program-item:hover p {
+  color: var(--vmu-white);
+}
+
+/* Featured Achievements */
+.featured-achievements {
+  width: 100vw;
+  padding: 10rem 0;
+  background-color: var(--vmu-gray);
+}
+
+/* Community Voices */
+.community-voices {
+  width: 100vw;
+  padding: 10rem 0;
+  background-color: var(--vmu-white);
+}
+
+/* Gallery Callout */
+.gallery-callout {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--vmu-gray);
+  color: var(--vmu-text);
+}
+
+.gallery-callout .container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.gallery-callout .gallery-callout-col {
+  flex: 1;
+}
+
+.gallery-callout .gallery-callout-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.gallery-callout .gallery-callout-col:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gallery-callout .gallery-callout-row {
+  position: relative;
+  left: -10vw;
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+}
+
+.gallery-callout .gallery-callout-img {
+  position: relative;
+  aspect-ratio: 5/4;
+  flex: 1;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.gallery-callout .gallery-callout-img-content {
+  position: absolute;
+  z-index: 1;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 1rem;
+  background-color: rgba(0, 62, 128, 0.25);
+  backdrop-filter: blur(15px);
+  color: var(--vmu-white);
+  border-radius: 0.75rem;
+}
+
+.gallery-callout .gallery-callout-img-content h3 {
+  color: var(--vmu-accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.gallery-callout .gallery-callout-img-content p {
+  color: var(--vmu-white);
+}
+
+.gallery-callout .gallery-callout-img-1 {
+  flex: 0.75;
+}
+
+.gallery-callout .gallery-callout-img-4 {
+  flex: 0.75;
+}
+
+.gallery-callout .gallery-callout-row:nth-child(1) {
+  align-items: flex-end;
+}
+
+.gallery-callout .gallery-callout-row:nth-child(2) {
+  align-items: flex-start;
+}
+
+/* ===== HERO SECTIONS ===== */
+
+/* Hero Main Section */
+.hero-main {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-main-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-main-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.1); /* Initial scale for animation */
+}
+
+.hero-main-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 62, 128, 0.7) 0%,
+    rgba(0, 160, 227, 0.5) 50%,
+    rgba(255, 194, 14, 0.3) 100%
+  );
+  z-index: 2;
+}
+
+.hero-main-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: var(--vmu-white);
+  max-width: 1200px;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+
+
+/* Hero main title styles moved to VimaruTitle component */
+
+/* Animation keyframes moved to VimaruTitle component */
+
+/* Coming Section */
+.coming-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: var(--vmu-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.coming-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--vmu-primary) 0%, var(--vmu-secondary) 100%);
+  z-index: 1;
+}
+
+.coming-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--vmu-white);
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.coming-logo {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 3rem;
+  background: var(--vmu-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(255, 194, 14, 0.3);
+  animation: comingLogoPulse 2s ease-in-out infinite;
+}
+
+@keyframes comingLogoPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 20px 60px rgba(255, 194, 14, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 30px 80px rgba(255, 194, 14, 0.5);
+  }
+}
+
+.coming-logo img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.coming-text {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.coming-date {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--vmu-accent);
+  text-shadow: 0 2px 10px rgba(255, 194, 14, 0.3);
+}
+
+.coming-platforms {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  opacity: 0.8;
+}
+
+.coming-platform {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.coming-platform svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Countdown Section - Thiết kế chuyên nghiệp */
+.countdown-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, var(--vmu-primary) 0%, var(--vmu-secondary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 4rem 0;
+}
+
+.countdown-bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(255, 194, 14, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 194, 14, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0, 160, 227, 0.05) 0%, transparent 70%);
+  z-index: 1;
+}
+
+.countdown-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  color: var(--vmu-white);
+  max-width: 1200px;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+/* Countdown Header */
+.countdown-header {
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.countdown-main-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  color: var(--vmu-white);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  position: relative;
+  z-index: 11;
+}
+
+.countdown-subtitle {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--vmu-accent);
+  text-shadow: 0 4px 20px rgba(255, 194, 14, 0.8);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 11;
+}
+
+/* Countdown Timer Container */
+.countdown-timer-container {
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 6;
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 2rem 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Countdown Items - Thiết kế chuyên nghiệp */
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 100px;
+}
+
+.countdown-number {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  color: var(--vmu-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  min-height: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 194, 14, 0.2) 0%, rgba(255, 194, 14, 0.1) 100%);
+  border-radius: 20px;
+  padding: 1.5rem 1.2rem;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 194, 14, 0.4);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  min-width: 80px;
+}
+
+.countdown-number::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 194, 14, 0.3), transparent);
+  transition: left 0.8s ease;
+}
+
+.countdown-number:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, rgba(255, 194, 14, 0.3) 0%, rgba(255, 194, 14, 0.2) 100%);
+  border-color: rgba(255, 194, 14, 0.6);
+}
+
+.countdown-number:hover::before {
+  left: 100%;
+}
+
+.countdown-label {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--vmu-white);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.countdown-item:hover .countdown-label {
+  opacity: 1;
+  color: var(--vmu-accent);
+  text-shadow: 0 2px 15px rgba(255, 194, 14, 0.4);
+}
+
+/* Countdown Separator - Thiết kế đẹp */
+.countdown-separator {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--vmu-accent);
+  text-shadow: 0 4px 20px rgba(255, 194, 14, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: countdownPulse 2s ease-in-out infinite;
+  margin: 0 0.5rem;
+}
+
+@keyframes countdownPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Countdown Message */
+.countdown-message {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 500;
+  color: var(--vmu-white);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  margin-top: 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Countdown Section Buttons - Styling chuyên nghiệp */
+.countdown-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 6;
+}
+
+.countdown-section .hero-buttons {
+  margin-top: 0;
+  gap: 2.5rem;
+}
+
+.countdown-section .hero-buttons .animated-button {
+  min-width: 200px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+}
+
+.countdown-section .hero-buttons .animated-button:not(.secondary) {
+  background: linear-gradient(135deg, var(--vmu-accent) 0%, #e6a800 100%);
+  color: var(--vmu-primary);
+  box-shadow: 
+    0 8px 25px rgba(255, 194, 14, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.countdown-section .hero-buttons .animated-button:not(.secondary):hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 15px 40px rgba(255, 194, 14, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #e6a800 0%, var(--vmu-accent) 100%);
+}
+
+.countdown-section .hero-buttons .animated-button.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--vmu-white);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.countdown-section .hero-buttons .animated-button.secondary:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+  .hero {
+    height: 175svh;
+  }
+  
+  .hero .hero-content {
+    width: 100%;
+    top: 40svh;
+  }
+
+  .hero .hero-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero .hero-header h2 {
+    font-size: 2rem;
+  }
+
+  .hero .hero-tagline {
+    width: 75%;
+  }
+
+  .countdown-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .countdown-item {
+    min-width: 60px;
+  }
+
+  .countdown-number {
+    font-size: 2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .countdown-buttons-container {
+    margin-top: 2rem;
+  }
+  
+  .countdown-section .hero-buttons {
+    margin-top: 0;
+    gap: 1.5rem;
+  }
+  
+  .countdown-section .hero-buttons .animated-button {
+    min-width: 180px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .hero-stats {
+    padding: 2rem 0;
+  }
+
+  .hero-stats .container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hero-stats .stat {
+    aspect-ratio: 16/6;
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-stats .stat-divider {
+    display: none;
+  }
+
+  .counter-number {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .milestones-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .program-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .gallery-callout .container {
+    flex-direction: column;
+  }
+
+  .gallery-callout .gallery-callout-row {
+    left: 0;
+  }
+
+  .gallery-callout .gallery-callout-img-content {
+    display: none;
+  }
+
+  /* Countdown Responsive */
+  .countdown-timer {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+  
+  .countdown-timer .countdown-item {
+    min-width: 80px;
+  }
+  
+  .countdown-separator {
+    display: none;
+  }
+  
+  .countdown-main-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  
+  .countdown-subtitle {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  
+  .countdown-header {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) and (min-width: 481px) {
+  .countdown-timer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .countdown-timer .countdown-item {
+    flex: 1;
+    min-width: 70px;
+    max-width: 100px;
+  }
+  
+  .countdown-separator {
+    display: none;
+  }
+  
+  .countdown-number {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    padding: 1rem 0.8rem;
+  }
+  
+  .countdown-header {
+    padding: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .countdown-buttons-container {
+    margin-top: 2.5rem;
+  }
+  
+  .countdown-section .hero-buttons {
+    margin-top: 0;
+    gap: 2rem;
+  }
+  
+  .countdown-section .hero-buttons .animated-button {
+    min-width: 160px;
+    padding: 0.9rem 1.8rem;
+    font-size: 1rem;
+  }
+
+  .hero-stats {
+    padding: 3rem 0;
+  }
+
+  .hero-stats .container {
+    gap: 1.8rem;
+  }
+
+  .hero-stats .stat {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .counter-number {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  }
+  
+  .coming-platforms {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .hero-main-content,
+  .coming-content,
+  .countdown-content {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .countdown-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .countdown-item {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .countdown-number {
+    min-width: 80px;
+  }
+}
+
+

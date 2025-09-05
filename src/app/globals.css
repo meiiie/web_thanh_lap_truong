@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=BE+PRO+VIETNAM:wght@300;400;500;600;700&display=swap");
+
+/* View Transitions API Support */
+@view-transition {
+  navigation: auto;
+}
+
+/* View Transition Styles */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: auto; /* Let Lenis handle smooth scrolling */
+}
+
+/* Performance optimizations for animations */
+* {
+  will-change: auto;
+}
+
+/* Optimize for smooth scrolling */
+body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Lenis smooth scroll optimizations */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* Lenis wrapper for consistent smooth scrolling */
+.lenis-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Ensure all components inherit smooth scroll */
+.lenis-wrapper * {
+  scroll-behavior: auto; /* Let Lenis handle all scrolling */
+}
+
+/* GSAP Scroll Wrapper for homepage */
+.gsap-scroll-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* Enable smooth scrolling with GSAP */
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* GSAP Scroll optimizations */
+.gsap-scroll-wrapper * {
+  scroll-behavior: smooth;
+}
+
+/* Prevent conflicts with GSAP ScrollTrigger */
+.gs_reveal,
+.featured-achievement-card,
+.timeline-item,
+.featured-project-card,
+.community-voice-content {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+:root {
+  /* Legacy base colors for compatibility */
+  --base-100: var(--vmu-white);
+  --base-200: var(--vmu-gray);
+  --base-250: var(--vmu-text-light);
+  --base-300: var(--vmu-text);
+  --base-350: var(--vmu-text);
+  --base-400: var(--vmu-text-light);
+  --base-450: var(--vmu-primary);
+  --base-500: var(--vmu-primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  font-family: "BE PRO VIETNAM", "Manrope", sans-serif;
+  background-color: var(--vmu-white);
+  color: var(--vmu-text);
+}
+
+section,
+.footer {
+  background-color: var(--vmu-white);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: 500;
+  letter-spacing: -0.25rem;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 3.5rem;
+  font-weight: 550;
+  letter-spacing: -0.15rem;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: -0.075rem;
+  line-height: 1.2;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+p.md {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+p.lg {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+p.mono {
+  text-transform: uppercase;
+  font-family: "DM Mono";
+  font-size: 0.9rem;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+
+p.md.mono {
+  font-size: 1rem;
+}
+
+p.lg.mono {
+  font-size: 1.1rem;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--vmu-primary);
+  border-radius: 0.35rem;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--vmu-secondary);
+}
+
+span.spacer {
+  display: inline-block;
+  width: 20rem;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 3rem;
+    letter-spacing: -0.1rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    letter-spacing: -0.05rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    letter-spacing: -0.025rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+::view-transition-group(root) {
+  z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+  will-change: transform, opacity, clip-path;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 10000;
+  animation: none !important;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+  animation: none !important;
+}
+
+body.menu-open * {
+  pointer-events: none;
+}
+
+body.menu-open .menu,
+body.menu-open .menu *,
+body.menu-open .menu-toggle {
+  pointer-events: auto;
+}
