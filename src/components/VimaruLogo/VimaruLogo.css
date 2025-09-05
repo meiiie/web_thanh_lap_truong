@@ -1,0 +1,91 @@
+.vimaru-logo {
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.vimaru-logo svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 30px rgba(255, 194, 14, 0.4));
+  transition: all 0.3s ease;
+}
+
+.vimaru-logo:hover svg {
+  filter: drop-shadow(0 0 50px rgba(255, 194, 14, 0.8));
+  transform: scale(1.05);
+}
+
+/* Hero Main specific styles */
+.hero-main .vimaru-logo {
+  width: clamp(400px, 50vw, 800px);
+  height: clamp(150px, 20vw, 300px);
+  margin: 0 auto;
+  display: block;
+}
+
+.hero-main .vimaru-logo svg {
+  filter: drop-shadow(0 0 40px rgba(255, 194, 14, 0.6));
+}
+
+/* Animation states */
+.vimaru-logo.animate-in svg path {
+  animation: vimaruPathReveal 1.2s ease-out forwards;
+}
+
+.vimaru-logo.animate-in svg path:nth-child(1) { animation-delay: 0.1s; }
+.vimaru-logo.animate-in svg path:nth-child(2) { animation-delay: 0.2s; }
+.vimaru-logo.animate-in svg path:nth-child(3) { animation-delay: 0.3s; }
+.vimaru-logo.animate-in svg path:nth-child(4) { animation-delay: 0.4s; }
+.vimaru-logo.animate-in svg path:nth-child(5) { animation-delay: 0.5s; }
+.vimaru-logo.animate-in svg path:nth-child(6) { animation-delay: 0.6s; }
+.vimaru-logo.animate-in svg path:nth-child(7) { animation-delay: 0.7s; }
+.vimaru-logo.animate-in svg path:nth-child(8) { animation-delay: 0.8s; }
+.vimaru-logo.animate-in svg path:nth-child(9) { animation-delay: 0.9s; }
+
+@keyframes vimaruPathReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+    fill-opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(90deg);
+    fill-opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    fill-opacity: 1;
+  }
+}
+
+/* Glow effect */
+.vimaru-logo.glow svg {
+  animation: vimaruGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes vimaruGlow {
+  0% {
+    filter: drop-shadow(0 0 30px rgba(255, 194, 14, 0.4));
+  }
+  100% {
+    filter: drop-shadow(0 0 60px rgba(255, 194, 14, 0.8));
+  }
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .hero-main .vimaru-logo {
+    width: clamp(350px, 70vw, 600px);
+    height: clamp(120px, 25vw, 250px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-main .vimaru-logo {
+    width: clamp(300px, 80vw, 500px);
+    height: clamp(100px, 30vw, 200px);
+  }
+}

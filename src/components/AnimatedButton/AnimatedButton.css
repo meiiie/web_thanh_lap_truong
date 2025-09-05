@@ -1,0 +1,115 @@
+.btn {
+  position: relative;
+  display: inline-block;
+  width: 12rem;
+  height: auto;
+  padding: 0.15rem;
+  outline: none;
+  border: none;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 4rem;
+  cursor: pointer;
+  margin: 1rem 0;
+  transform: scale(0);
+  border: 1px solid var(--vmu-primary-20);
+  box-shadow: 0 4px 20px var(--vmu-shadow);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  box-shadow: 0 8px 30px var(--vmu-shadow);
+  transform: translateY(-2px);
+}
+
+.btn .circle {
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: var(--vmu-gradient);
+  border-radius: 4rem;
+  font-size: 1.5rem;
+  transform: scale(0);
+  overflow: hidden;
+  transition: width 0.5s cubic-bezier(0.65, 0, 0, 0.076, 1);
+}
+
+.btn .icon {
+  position: absolute;
+  top: 0.775rem;
+  left: 0.95rem;
+  color: var(--vmu-white);
+  font-size: 1.5rem;
+  transform: translateX(0);
+  transition: all 0.5s cubic-bezier(0.65, 0, 0.076, 1);
+  will-change: transform;
+}
+
+.btn .button-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 0 0 1.25rem;
+  text-align: center;
+  color: var(--vmu-primary);
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: all 0.5s cubic-bezier(0.65, 0, 0.076, 1);
+}
+
+.btn .line {
+  position: relative;
+  transform: translateY(100%);
+  will-change: transform;
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+}
+
+.btn:hover .circle {
+  width: 100%;
+}
+
+.btn:hover .icon {
+  transform: translate(0.75rem);
+}
+
+.btn:hover .button-text {
+  color: var(--vmu-white);
+}
+
+/* Secondary Button Style */
+.btn.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--vmu-white);
+  color: var(--vmu-white);
+}
+
+.btn.btn-secondary .circle {
+  background: var(--vmu-white);
+}
+
+.btn.btn-secondary .icon {
+  color: var(--vmu-primary);
+}
+
+.btn.btn-secondary .button-text {
+  color: var(--vmu-white);
+}
+
+.btn.btn-secondary:hover .circle {
+  background: var(--vmu-accent);
+}
+
+.btn.btn-secondary:hover .icon {
+  color: var(--vmu-primary);
+}
+
+.btn.btn-secondary:hover .button-text {
+  color: var(--vmu-primary);
+}

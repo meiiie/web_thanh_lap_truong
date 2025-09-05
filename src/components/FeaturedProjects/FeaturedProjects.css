@@ -1,0 +1,125 @@
+.featured-projects {
+  position: relative;
+  width: 100vw;
+  background: var(--vmu-gradient);
+  color: var(--vmu-white);
+  padding: 1rem;
+}
+
+.featured-projects .featured-project-card {
+  position: sticky;
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+.featured-projects .featured-project-card-inner {
+  position: relative;
+  width: calc(100%);
+  height: calc(100% - 2rem);
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  border-radius: 2rem;
+  background-color: var(--vmu-white);
+  transform-origin: 50% 100%;
+  will-change: transform;
+  overflow: hidden;
+  box-shadow: 0 20px 60px var(--vmu-shadow);
+}
+
+.featured-projects .featured-project-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.featured-projects .featured-project-card-content-main {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.featured-projects .featured-project-card-info {
+  width: 40%;
+  padding: 2rem;
+  text-align: left;
+  color: var(--vmu-primary);
+  font-weight: 600;
+}
+
+.featured-projects .featured-project-card-title h2 {
+  padding: 2rem 0 1rem 0;
+  color: var(--vmu-text);
+}
+
+.featured-projects .featured-project-card-description {
+  width: 75%;
+  text-align: left;
+  color: var(--vmu-text);
+}
+
+.featured-projects .featured-project-card-img {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.featured-projects .featured-project-card-inner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--vmu-primary);
+  opacity: var(--after-opacity, 0);
+  will-change: opacity;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Đảm bảo card cuối cùng luôn hiển thị đúng */
+.featured-projects .featured-project-card:last-child .featured-project-card-inner::after {
+  opacity: 0 !important;
+  display: none;
+}
+
+.featured-projects .featured-project-card:last-child .featured-project-card-inner {
+  transform: translate3d(0px, 0px, 0px) rotateX(0deg) !important;
+}
+
+@media (max-width: 1000px) {
+  .featured-projects .featured-project-card-inner {
+    flex-direction: column;
+  }
+
+  .featured-projects .featured-project-card-content,
+  .featured-projects .featured-project-card-img {
+    flex: 1;
+  }
+
+  .featured-projects .featured-project-card-info {
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .featured-projects .featured-project-card-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  .featured-projects .featured-project-card-description {
+    display: none;
+  }
+}

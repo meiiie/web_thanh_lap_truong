@@ -1,0 +1,424 @@
+/* 🚢 Milestone Modal Component - VMU 70 Years */
+
+.milestone-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* Ngăn chặn cuộn body khi modal mở */
+  overflow: hidden;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.modal-content {
+  position: relative;
+  background: var(--vmu-white);
+  border-radius: 24px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  /* Cải thiện cuộn trong modal */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--vmu-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.modal-close:hover {
+  background: var(--vmu-primary);
+  color: var(--vmu-white);
+  transform: scale(1.1);
+}
+
+.modal-header {
+  text-align: center;
+  padding: 40px 40px 20px;
+  background: linear-gradient(135deg, var(--vmu-primary) 0%, var(--vmu-secondary) 50%, var(--vmu-accent) 100%);
+  color: var(--vmu-white);
+  border-radius: 24px 24px 0 0;
+  position: relative;
+}
+
+.modal-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--vmu-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.icon-emoji {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.modal-icon-svg {
+  width: 40px;
+  height: 40px;
+  color: var(--vmu-primary);
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--vmu-text);
+}
+
+.modal-year {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-subtitle {
+  font-size: 1.1rem;
+  font-weight: 400;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+.modal-body {
+  padding: 30px 40px;
+}
+
+.modal-description {
+  margin-bottom: 30px;
+}
+
+.modal-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--vmu-text);
+  margin: 0;
+}
+
+.modal-achievements {
+  margin-bottom: 30px;
+}
+
+.modal-achievements h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--vmu-primary);
+  margin-bottom: 16px;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--vmu-white);
+  border: 2px solid var(--vmu-gray);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.achievement-item:hover {
+  border-color: var(--vmu-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-icon {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--vmu-primary) 0%, var(--vmu-secondary) 100%);
+  color: var(--vmu-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.achievement-text {
+  font-size: 0.95rem;
+  color: var(--vmu-text);
+  font-weight: 500;
+}
+
+.modal-image {
+  margin-bottom: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.modal-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 16px;
+  padding: 20px 40px 40px;
+  justify-content: center;
+}
+
+.modal-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.modal-btn-primary {
+  background: linear-gradient(135deg, var(--vmu-primary) 0%, var(--vmu-secondary) 100%);
+  color: var(--vmu-white);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.modal-btn-secondary {
+  background: var(--vmu-white);
+  color: var(--vmu-primary);
+  border: 2px solid var(--vmu-primary);
+}
+
+.modal-btn-secondary:hover {
+  background: var(--vmu-primary);
+  color: var(--vmu-white);
+}
+
+/* Color Variants */
+.modal-content.modal-primary .modal-header {
+  background: linear-gradient(135deg, var(--vmu-primary) 0%, var(--vmu-secondary) 50%, var(--vmu-accent) 100%);
+}
+
+.modal-content.modal-secondary .modal-header {
+  background: linear-gradient(135deg, var(--vmu-secondary) 0%, var(--vmu-primary) 100%);
+}
+
+.modal-content.modal-accent .modal-header {
+  background: linear-gradient(135deg, var(--vmu-accent) 0%, var(--vmu-primary) 100%);
+  color: var(--vmu-text);
+}
+
+.modal-content.modal-accent .modal-year,
+.modal-content.modal-accent .modal-title,
+.modal-content.modal-accent .modal-subtitle {
+  color: var(--vmu-text);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .milestone-modal {
+    padding: 10px;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .modal-header {
+    padding: 30px 20px 15px;
+  }
+
+  .modal-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .icon-emoji {
+    font-size: 30px;
+  }
+
+  .modal-year {
+    font-size: 2rem;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+
+  .modal-footer {
+    padding: 15px 20px 30px;
+    flex-direction: column;
+  }
+
+  .modal-btn {
+    width: 100%;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-header {
+    padding: 25px 15px 10px;
+  }
+
+  .modal-body {
+    padding: 15px;
+  }
+
+  .modal-footer {
+    padding: 10px 15px 25px;
+  }
+
+  .modal-close {
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Animation Enhancements */
+.modal-content {
+  animation: modalSlideIn 0.4s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.achievement-item {
+  animation: achievementSlideIn 0.3s ease-out;
+  animation-fill-mode: both;
+}
+
+.achievement-item:nth-child(1) { animation-delay: 0.1s; }
+.achievement-item:nth-child(2) { animation-delay: 0.2s; }
+.achievement-item:nth-child(3) { animation-delay: 0.3s; }
+.achievement-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes achievementSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Accessibility */
+.modal-close:focus {
+  outline: 3px solid var(--vmu-accent);
+  outline-offset: 2px;
+}
+
+.modal-btn:focus {
+  outline: 3px solid var(--vmu-accent);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .milestone-modal {
+    position: static;
+    display: block;
+  }
+  
+  .modal-overlay {
+    display: none;
+  }
+  
+  .modal-close {
+    display: none;
+  }
+  
+  .modal-content {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* Cải thiện cuộn cho modal */
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--vmu-gray);
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--vmu-primary);
+}

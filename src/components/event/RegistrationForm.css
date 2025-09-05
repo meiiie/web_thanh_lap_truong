@@ -1,0 +1,186 @@
+.registration-form {
+  padding: 100px 0;
+}
+
+.form-header {
+  margin-bottom: 80px;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.registration-form-content {
+  background: var(--vmu-white);
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 20px 60px var(--vmu-shadow);
+}
+
+.form-grid {
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--vmu-text);
+  margin-bottom: 12px;
+}
+
+.required {
+  color: #e74c3c;
+  margin-left: 4px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 16px;
+  border: 2px solid var(--vmu-gray);
+  border-radius: 12px;
+  font-size: 16px;
+  color: var(--vmu-text);
+  background: var(--vmu-white);
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--vmu-primary);
+  box-shadow: 0 0 0 4px var(--vmu-primary-10);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--vmu-text-light);
+  opacity: 0.7;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-actions {
+  margin-top: 40px;
+}
+
+.form-actions .vmu-btn {
+  min-width: 200px;
+  padding: 16px 32px;
+  font-size: 18px;
+}
+
+.form-actions .vmu-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Success message */
+.success-message {
+  background: var(--vmu-white);
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 20px 60px var(--vmu-shadow);
+}
+
+.success-icon {
+  font-size: 64px;
+  margin-bottom: 24px;
+}
+
+.success-message .vmu-h2 {
+  color: var(--vmu-primary) !important;
+  margin-bottom: 24px;
+}
+
+.success-message .vmu-body {
+  margin-bottom: 32px;
+  color: var(--vmu-text);
+}
+
+/* Mobile responsive */
+@media (max-width: 1000px) {
+  .registration-form {
+    padding: 80px 0;
+  }
+
+  .form-header {
+    margin-bottom: 60px;
+  }
+
+  .registration-form-content {
+    padding: 32px;
+  }
+
+  .form-grid {
+    gap: 24px;
+  }
+
+  .form-actions .vmu-btn {
+    min-width: 180px;
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .registration-form {
+    padding: 60px 0;
+  }
+
+  .form-header {
+    margin-bottom: 40px;
+  }
+
+  .registration-form-content {
+    padding: 24px;
+  }
+
+  .form-grid {
+    gap: 20px;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .form-label {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .form-actions .vmu-btn {
+    min-width: 160px;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .success-message {
+    padding: 32px 24px;
+  }
+
+  .success-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,60 @@
+/* VimaruTitle Component Styles - Đơn giản và đẹp */
+.vimaru-title {
+  /* Font styling */
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0.1em;
+  font-family: "BE PRO VIETNAM", "Manrope", sans-serif;
+  
+  /* Colors */
+  color: var(--vmu-white);
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  
+  /* Position */
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* SSR fallback - Đơn giản và đẹp */
+.vimaru-title-ssr {
+  /* Giống hệt .vimaru-title */
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0.1em;
+  font-family: "BE PRO VIETNAM", "Manrope", sans-serif;
+  color: var(--vmu-white);
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Loại bỏ tất cả CSS phức tạp - chỉ giữ styling cơ bản */
+
+/* Mobile optimizations */
+@media (max-width: 1000px) {
+  .vimaru-title,
+  .vimaru-title-ssr {
+    font-size: clamp(3rem, 8vw, 8rem);
+    letter-spacing: 0.05em;
+  }
+}
