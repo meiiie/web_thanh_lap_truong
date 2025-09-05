@@ -1,0 +1,13 @@
+<svg width="2660" height="588" viewBox="0 0 2660 588" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vimaruGradient" x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#00A0E3"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- VIMARU Text with Terrene-style typography -->
+  <text x="1330" y="460" font-family="Arial, sans-serif" font-size="600" font-weight="bold" text-anchor="middle" fill="url(#vimaruGradient)">
+    VIMARU
+  </text>
+</svg>
