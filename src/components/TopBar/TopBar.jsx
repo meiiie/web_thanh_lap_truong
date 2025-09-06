@@ -81,7 +81,7 @@ const TopBar = () => {
       </div>
       <div className="top-bar-nav">
         <nav className="top-nav-menu">
-          <a
+          {/* <a
             href="/"
             onClick={(e) => {
               e.preventDefault();
@@ -100,8 +100,8 @@ const TopBar = () => {
             className="nav-link"
           >
             70 Năm VMU
-          </a>
-          <a
+          </a> */}
+          {/* <a
             href="/gioi-thieu"
             onClick={(e) => {
               e.preventDefault();
@@ -110,8 +110,8 @@ const TopBar = () => {
             className="nav-link"
           >
             Về trường
-          </a>
-          <a
+          </a> */}
+          {/* <a
             href="/su-kien"
             onClick={(e) => {
               e.preventDefault();
@@ -120,7 +120,7 @@ const TopBar = () => {
             className="nav-link"
           >
             Sự kiện
-          </a>
+          </a> */}
         </nav>
       </div>
       <div className="top-bar-cta">
