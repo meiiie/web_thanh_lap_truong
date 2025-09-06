@@ -75,7 +75,7 @@ const nextConfig = {
 
   // Cấu hình experimental
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
     optimizePackageImports: ['gsap', '@gsap/react']
   },
 
