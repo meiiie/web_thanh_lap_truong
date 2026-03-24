@@ -84,9 +84,7 @@ const Footer = () => {
               </div>
               <Copy delay={0.2}>
                 <h2>
-                  Chào mừng mốc 70 năm thành lập với một website giới thiệu gọn,
-                  rõ, đúng ngữ cảnh và ưu tiên trải nghiệm đọc trên cả desktop
-                  lẫn mobile.
+                  Đào tạo nguồn nhân lực chất lượng cao cho ngành hàng hải Việt Nam.
                 </h2>
               </Copy>
             </div>
