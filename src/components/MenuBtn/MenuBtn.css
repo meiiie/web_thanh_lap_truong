@@ -9,7 +9,7 @@
   border-radius: 999px;
   transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
-  z-index: 1000;
+  z-index: 1002; /* Above menu (1001) and TopBar (1000) */
   border: 1px solid rgba(0, 62, 128, 0.1);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }

@@ -9,7 +9,7 @@
   background-color: var(--vmu-primary);
   overflow: hidden;
   padding: 0.75rem;
-  z-index: 100;
+  z-index: 1001; /* Above TopBar (1000) */
 }
 
 .menu-wrapper {

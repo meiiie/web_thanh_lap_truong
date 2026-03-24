@@ -24,8 +24,10 @@ export default function ClientLayout({ children, topBar }) {
 
     const updateLayoutMode = () => {
       const mobile = window.innerWidth <= 1000;
-      const shouldUseLenis =
-        pathname !== "/" && !mobile && !coarsePointerQuery.matches;
+      // Enable Lenis on all pages except homepage desktop
+      // Homepage mobile needs Lenis for smooth scroll with ScrollTrigger pins
+      const isHomepageDesktop = pathname === "/" && !mobile;
+      const shouldUseLenis = !isHomepageDesktop;
 
       setIsMobile(mobile);
       setUseLenis(shouldUseLenis);
