@@ -1,0 +1,129 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.preloader__block {
+  flex: 1;
+  background: var(--brand-950, #0A2540);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  will-change: clip-path;
+}
+
+.preloader__counter {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.preloader__count {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  opacity: 0;
+}
+
+.preloader__digit {
+  overflow: hidden;
+  padding-top: 0.5rem;
+}
+
+.preloader__digit span {
+  display: block;
+  font-family: var(--font-display, serif);
+  font-size: clamp(7rem, 16vw, 15rem);
+  font-weight: 400;
+  color: var(--brand-300, #64B5F6);
+  transform: translateY(120%);
+  will-change: transform;
+  line-height: 0.85;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.04em;
+}
+
+.preloader__logo {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  z-index: 3;
+  text-align: center;
+}
+
+.preloader__word {
+  overflow: hidden;
+}
+
+.preloader__word span {
+  display: block;
+  font-family: var(--font-display, serif);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 600;
+  color: var(--brand-300, #64B5F6);
+  transform: translateY(120%);
+  will-change: transform;
+  line-height: 1.3;
+  margin: 0;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+.preloader__divider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: center top;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(100, 181, 246, 0.4), transparent);
+  will-change: transform;
+  z-index: 1;
+}
+
+.preloader__spinner {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.preloader__spinner-ring {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(100, 181, 246, 0.35);
+  border-top-color: var(--brand-300, #64B5F6);
+  border-radius: 50%;
+  animation: preloader-spin 0.9s linear infinite;
+}
+
+@keyframes preloader-spin {
+  to { transform: rotate(360deg); }
+}
+
+.preloader__count,
+.preloader__digit,
+.preloader__word {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}

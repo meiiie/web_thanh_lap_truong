@@ -59,24 +59,17 @@ html.lenis {
   width: 100%;
   height: 100%;
   position: relative;
-  /* Enable smooth scrolling with GSAP */
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
-/* GSAP Scroll optimizations */
-.gsap-scroll-wrapper * {
-  scroll-behavior: smooth;
-}
+/* GSAP Scroll optimizations — avoid scroll-behavior: smooth as it conflicts with GSAP */
 
-/* Prevent conflicts with GSAP ScrollTrigger */
+/* GSAP handles GPU acceleration via force3D — no need for will-change here */
 .gs_reveal,
 .featured-achievement-card,
 .timeline-item,
 .featured-project-card,
 .community-voice-content {
-  will-change: transform, opacity;
-  transform: translateZ(0);
   backface-visibility: hidden;
 }
 
@@ -231,7 +224,6 @@ span.spacer {
 
 ::view-transition-image-pair(root) {
   isolation: isolate;
-  will-change: transform, opacity, clip-path;
   z-index: 1;
 }
 

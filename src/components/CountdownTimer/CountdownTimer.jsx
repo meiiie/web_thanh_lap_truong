@@ -9,6 +9,7 @@ const CountdownTimer = memo(() => {
     seconds: 0
   });
   const [isClient, setIsClient] = useState(false);
+  const [hasExpired, setHasExpired] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -16,25 +17,43 @@ const CountdownTimer = memo(() => {
 
   useEffect(() => {
     if (!isClient) return;
-    
+
     const targetDate = new Date('2026-04-01T00:00:00');
-    
-    const timer = setInterval(() => {
+
+    const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = targetDate.getTime() - now;
-      
-      if (distance > 0) {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000)
-        });
+
+      if (distance <= 0) {
+        setHasExpired(true);
+        return;
       }
-    }, 1000);
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      });
+    };
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(timer);
   }, [isClient]);
+
+  if (hasExpired) {
+    return (
+      <div className="countdown-timer-container">
+        <div className="countdown-celebration">
+          <h2 style={{ fontSize: '2rem', textAlign: 'center', color: 'var(--vmu-gold, #c8a951)' }}>
+            Chào mừng kỷ niệm 70 năm!
+          </h2>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="countdown-timer-container">

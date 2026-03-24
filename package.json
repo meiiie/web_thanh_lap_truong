@@ -2,10 +2,20 @@
   "name": "vmu-70-nam-kiniem",
   "version": "1.0.0",
   "private": true,
-  "description": "Website kỷ niệm 70 năm Trường Đại học Hàng hải Việt Nam (1956-2026)",
-  "keywords": ["VMU", "kỷ niệm 70 năm", "hàng hải", "đại học", "6/9/2025"],
-  "author": "The Wiii Lab",
+  "description": "Microsite giới thiệu Trường Đại học Hàng hải Việt Nam nhân mốc 70 năm thành lập ngày 01/04/2026",
+  "keywords": [
+    "VMU",
+    "Trường Đại học Hàng hải Việt Nam",
+    "Vietnam Maritime University",
+    "kỷ niệm 70 năm",
+    "01/04/2026",
+    "kinh tế biển"
+  ],
+  "author": "HoLiLiHu tới từ The Wiii Lab",
   "homepage": "https://kiniem70nam.vmu.holihu.online",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

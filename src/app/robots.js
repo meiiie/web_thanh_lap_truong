@@ -1,10 +1,12 @@
+import { siteUrl } from "@/data/seo";
+
 export default function robots() {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/private/', '/admin/'],
+      userAgent: "*",
+      allow: "/",
     },
-    sitemap: 'https://kiniem70nam.vmu.holihu.online/sitemap.xml',
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
   };
 }

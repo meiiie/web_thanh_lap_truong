@@ -1,30 +1,34 @@
-"use client";
+import Image from "next/image";
+
 import "./contact.css";
-import { useEffect } from "react";
 
-import Nav from "@/components/Nav/Nav";
 import ConditionalFooter from "@/components/ConditionalFooter/ConditionalFooter";
+import Nav from "@/components/Nav/Nav";
+import { siteContact } from "@/data/site-content";
 
-const page = () => {
-  useEffect(() => {
-    // Error handling cho trang connect
-    const handleError = (event) => {
-      console.error('Connect page error:', event);
-    };
+const contactLinks = [
+  {
+    title: "Thông tin chung",
+    lines: [siteContact.email, siteContact.phonePrimary, siteContact.phoneSecondary],
+  },
+  {
+    title: "Kênh chính thức",
+    lines: [siteContact.website, siteContact.admissionsSite, siteContact.facebook],
+  },
+  {
+    title: "Địa chỉ trường",
+    lines: ["484 Lạch Tray", "P. Lê Chân, TP. Hải Phòng", "Việt Nam"],
+  },
+  {
+    title: "Ghi chú",
+    lines: [
+      "Microsite ưu tiên giới thiệu trường và mốc 70 năm thành lập ngày 01/04/2026.",
+      siteContact.sourceNote,
+    ],
+  },
+];
 
-    const handleUnhandledRejection = (event) => {
-      console.error('Unhandled promise rejection:', event);
-    };
-
-    window.addEventListener('error', handleError);
-    window.addEventListener('unhandledrejection', handleUnhandledRejection);
-
-    return () => {
-      window.removeEventListener('error', handleError);
-      window.removeEventListener('unhandledrejection', handleUnhandledRejection);
-    };
-  }, []);
-
+export default function Page() {
   return (
     <>
       <Nav />
@@ -33,7 +37,7 @@ const page = () => {
           <div className="container">
             <div className="contact-col">
               <div className="contact-hero-header">
-                <h1>Liên hệ tới VMU</h1>
+                <h1>Liên hệ và kết nối cùng VMU</h1>
               </div>
               <div className="contact-copy-year">
                 <h1>70 NĂM</h1>
@@ -41,40 +45,24 @@ const page = () => {
             </div>
             <div className="contact-col">
               <div className="contact-info">
-                <div className="contact-info-block">
-                  <p>Thông tin kỷ niệm 70 năm</p>
-                  <p>70nam@vimaru.edu.vn</p>
-                  <p>0225.3.747.024</p>
-                </div>
-                <div className="contact-info-block">
-                  <p>Tuyển sinh & Đào tạo</p>
-                  <p>tuyensinh@vimaru.edu.vn</p>
-                  <p>0225.3.747.024</p>
-                </div>
-                <div className="contact-info-block">
-                  <p>Địa chỉ trường</p>
-                  <p>484 Lạch Tray</p>
-                  <p>Ngô Quyền, Hải Phòng</p>
-                  <p>Việt Nam</p>
-                </div>
-                <div className="contact-info-block">
-                  <p>Kết nối VMU</p>
-                  <p>Facebook: VMU Official</p>
-                  <p>YouTube: VMU Channel</p>
-                  <p>LinkedIn: Vietnam Maritime University</p>
-                </div>
+                {contactLinks.map((block) => (
+                  <div className="contact-info-block" key={block.title}>
+                    <p>{block.title}</p>
+                    {block.lines.map((line) => (
+                      <p key={line}>{line}</p>
+                    ))}
+                  </div>
+                ))}
               </div>
               <div className="contact-img">
-                <img
+                <Image
                   src="/contact/contact-img.jpg"
-                  alt="Trường Đại học Hàng hải Việt Nam"
-                  onError={(e) => {
-                    console.log('Image load error:', e);
-                    e.target.style.display = 'none';
-                  }}
-                  onLoad={() => {
-                    console.log('Image loaded successfully');
-                  }}
+                  alt="Không gian Trường Đại học Hàng hải Việt Nam"
+                  width={1000}
+                  height={667}
+                  sizes="(max-width: 1000px) 100vw, 40vw"
+                  priority={false}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
             </div>
@@ -84,6 +72,4 @@ const page = () => {
       <ConditionalFooter />
     </>
   );
-};
-
-export default page;
+}

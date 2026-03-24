@@ -1,4 +1,4 @@
-// VMU Timeline Data - 70 Years of Excellence
+// Dữ liệu mốc thời gian VMU - 70 năm xây dựng và phát triển
 // Trường Đại học Hàng hải Việt Nam - Hành trình 70 năm
 
 export const vmuTimelineData = [
@@ -12,7 +12,7 @@ export const vmuTimelineData = [
     iconType: 'calendar',
     color: 'primary',
     achievements: ['Thành lập trường đại học hàng hải đầu tiên', 'Đặt nền móng cho ngành đào tạo hàng hải'],
-    image: '/archive/archive-1.jpg'
+    image: '/vmu/official/archive-1.jpg'
   },
   {
     year: '1975',
@@ -24,7 +24,7 @@ export const vmuTimelineData = [
     iconType: 'academic',
     color: 'secondary',
     achievements: ['Mở rộng chương trình đào tạo', 'Phát triển đội ngũ giảng viên'],
-    image: '/archive/archive-2.jpg'
+    image: '/vmu/official/archive-2.jpg'
   },
   {
     year: '1990',
@@ -36,7 +36,7 @@ export const vmuTimelineData = [
     iconType: 'star',
     color: 'accent',
     achievements: ['Thiết lập quan hệ quốc tế', 'Nâng cao chất lượng đào tạo'],
-    image: '/archive/archive-3.jpg'
+    image: '/vmu/official/about-history-1.jpg'
   },
   {
     year: '2000',
@@ -48,7 +48,7 @@ export const vmuTimelineData = [
     iconType: 'star',
     color: 'primary',
     achievements: ['Cơ sở vật chất hiện đại', 'Công nghệ giảng dạy tiên tiến'],
-    image: '/archive/archive-4.jpg'
+    image: '/vmu/official/about-history-2.jpg'
   },
   {
     year: '2010',
@@ -60,7 +60,7 @@ export const vmuTimelineData = [
     iconType: 'trophy',
     color: 'secondary',
     achievements: ['Chứng nhận chất lượng quốc tế', 'Vị thế khu vực'],
-    image: '/archive/archive-5.jpg'
+    image: '/vmu/official/about-history-3.jpg'
   },
   {
     year: '2020',
@@ -72,13 +72,13 @@ export const vmuTimelineData = [
     iconType: 'star',
     color: 'accent',
     achievements: ['Chuyển đổi số toàn diện', 'Giảng dạy trực tuyến'],
-    image: '/archive/archive-6.jpg'
+    image: '/vmu/official/home-campus.jpg'
   },
   {
     year: '2025',
     title: 'Trường trọng điểm quốc gia',
-    subtitle: 'Cột mốc lịch sử 05/9/2025',
-    description: 'Ngày 05/9/2025 - Một ngày lịch sử! Trường vinh dự đón nhận Quyết định 1901/QĐ-TTg của Thủ tướng Chính phủ về việc phê duyệt Đề án xây dựng Trường ĐHHHVN là trường trọng điểm quốc gia về đào tạo, nghiên cứu phục vụ phát triển bền vững kinh tế biển giai đoạn đến 2030, tầm nhìn đến 2045.',
+    subtitle: 'Cột mốc lịch sử 05/09/2025',
+    description: 'Ngày 05/09/2025 - Một ngày lịch sử! Trường vinh dự đón nhận Quyết định 1901/QĐ-TTg ngày 05/09/2025 của Thủ tướng Chính phủ về việc phê duyệt Đề án xây dựng Trường ĐHHHVN là trường trọng điểm quốc gia về đào tạo, nghiên cứu phục vụ phát triển bền vững kinh tế biển giai đoạn đến 2030, tầm nhìn đến 2045.',
     details: 'Trong không khí thiêng liêng của Lễ kỷ niệm 80 năm thành lập Bộ Quốc gia Giáo dục và Khai giảng toàn quốc năm học 2025-2026, VMU đã vinh dự đón nhận quyết định quan trọng này. Đây là sự ghi nhận của Đảng và Nhà nước về những đóng góp to lớn của trường trong 70 năm qua.',
     icon: '⭐',
     iconType: 'trophy',
@@ -89,20 +89,20 @@ export const vmuTimelineData = [
       'Tầm nhìn đến 2045',
       'Vinh dự đón nhận quyết định của Thủ tướng'
     ],
-    image: '/archive/archive-7.jpg',
+    image: '/vmu/official/event-1.jpg',
     isSpecial: true // Đánh dấu cột mốc đặc biệt
   },
   {
     year: '2026',
     title: 'Kỷ niệm 70 năm',
-    subtitle: 'Hành trình tiếp tục',
-    description: 'Chào mừng 70 năm thành lập trường với tầm nhìn mới về phát triển bền vững kinh tế biển và đào tạo nguồn nhân lực chất lượng cao.',
-    details: 'Với vị thế mới là trường trọng điểm quốc gia, VMU sẽ tiếp tục phát triển mạnh mẽ, đóng góp nhiều hơn cho sự nghiệp phát triển kinh tế biển của đất nước.',
+    subtitle: 'Lễ kỷ niệm 01/04/2026',
+    description: 'Chào mừng 70 năm thành lập trường (01/04/1956 - 01/04/2026) với tầm nhìn mới về phát triển bền vững kinh tế biển và đào tạo nguồn nhân lực chất lượng cao.',
+    details: 'Ngày 01/04/2026, Trường Đại học Hàng hải Việt Nam long trọng tổ chức Lễ kỷ niệm 70 năm thành lập. Với vị thế mới là trường trọng điểm quốc gia, VMU sẽ tiếp tục phát triển mạnh mẽ, đóng góp nhiều hơn cho sự nghiệp phát triển kinh tế biển của đất nước.',
     icon: '🎉',
     iconType: 'star',
     color: 'accent',
     achievements: ['70 năm phát triển', 'Tầm nhìn mới', 'Đóng góp cho Tổ quốc'],
-    image: '/archive/archive-8.jpg'
+    image: '/vmu/official/anniversary-70.png'
   }
 ];
 

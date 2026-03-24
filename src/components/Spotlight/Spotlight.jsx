@@ -26,16 +26,16 @@ const Spotlight = () => {
   };
 
   const spotlightItems = [
-    { name: "Kỷ niệm 60 năm thành lập", img: "/spotlight/spotlight-img-1.jpg" },
-    { name: "Đào tạo thuyền viên quốc tế", img: "/spotlight/spotlight-img-2.jpg" },
-    { name: "Nghiên cứu công nghệ hàng hải", img: "/spotlight/spotlight-img-3.jpg" },
-    { name: "Hợp tác quốc tế", img: "/spotlight/spotlight-img-4.jpg" },
-    { name: "Cơ sở vật chất hiện đại", img: "/spotlight/spotlight-img-5.jpg" },
-    { name: "Sinh viên xuất sắc", img: "/spotlight/spotlight-img-6.jpg" },
-    { name: "Giảng viên chất lượng cao", img: "/spotlight/spotlight-img-7.jpg" },
-    { name: "Dự án nghiên cứu", img: "/spotlight/spotlight-img-8.jpg" },
-    { name: "Thành tựu khoa học", img: "/spotlight/spotlight-img-9.jpg" },
-    { name: "Tương lai phát triển", img: "/spotlight/spotlight-img-10.jpg" },
+    { name: "Kỷ niệm 70 năm thành lập", img: "/spotlight/spotlight-img-1.jpg" },
+    { name: "Hành trình từ Bến Bính", img: "/spotlight/spotlight-img-2.jpg" },
+    { name: "Xây dựng cơ sở vật chất", img: "/spotlight/spotlight-img-3.jpg" },
+    { name: "Lễ kỷ niệm và vinh danh", img: "/spotlight/spotlight-img-4.jpg" },
+    { name: "Trường Đại học Hàng hải Việt Nam", img: "/spotlight/spotlight-img-5.jpg" },
+    { name: "Phát triển qua các thời kỳ", img: "/spotlight/spotlight-img-6.jpg" },
+    { name: "Đào tạo và nghiên cứu", img: "/spotlight/spotlight-img-7.jpg" },
+    { name: "Hiện đại hóa cơ sở", img: "/spotlight/spotlight-img-8.jpg" },
+    { name: "Hợp tác quốc tế", img: "/spotlight/spotlight-img-9.jpg" },
+    { name: "Tầm nhìn 2030 - 2045", img: "/spotlight/spotlight-img-10.jpg" },
   ];
 
   useEffect(() => {

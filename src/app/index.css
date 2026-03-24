@@ -92,7 +92,7 @@
   padding: 2rem;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 1rem;
-  backdrop-filter: blur(1rem);
+  /* backdrop-filter removed for mobile performance */
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -139,117 +139,70 @@
   color: var(--vmu-gray);
 }
 
+/* Hero Stats — clean, light background */
 .hero-stats {
   position: relative;
   width: 100%;
-  background: linear-gradient(135deg, var(--vmu-primary) 0%, var(--vmu-secondary) 100%);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--vmu-white);
   z-index: 10;
-  padding: 4rem 0;
-  overflow: hidden;
+  padding: 5rem 0;
+  border-top: 1px solid rgba(0, 62, 128, 0.06);
 }
 
-/* Hero Stats Background Pattern */
-.hero-stats-bg-pattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 30% 30%, rgba(255, 194, 14, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(255, 194, 14, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(0, 160, 227, 0.08) 0%, transparent 70%);
-  z-index: 1;
-}
+.hero-stats-bg-pattern { display: none; }
 
 .hero-stats .container {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 2rem;
+  background: rgba(0, 62, 128, 0.06);
 }
 
 .hero-stats .stat {
-  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 2rem 1.5rem;
-  aspect-ratio: 16/9;
-  color: var(--vmu-white);
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  position: relative;
-}
-
-.hero-stats .stat::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 194, 14, 0.2), transparent);
-  transition: left 0.8s ease;
-}
-
-.hero-stats .stat:hover {
-  background: rgba(255, 194, 14, 0.2);
-  border-color: rgba(255, 194, 14, 0.4);
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.hero-stats .stat:hover::before {
-  left: 100%;
+  color: var(--vmu-text);
+  background: var(--vmu-white);
+  text-align: center;
 }
 
 .hero-stats .stat-count,
 .hero-stats .stat-info {
-  flex: 1;
+  /* no flex:1 needed */
 }
 
 .hero-stats .stat-divider {
-  width: 100%;
+  width: 2rem;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.1);
-  margin: 0.5rem 0;
+  background: var(--vmu-primary);
+  margin: 0.75rem auto;
+  opacity: 0.3;
 }
 
 .hero-stats .stat-info {
   display: flex;
-  align-items: flex-end;
+  justify-content: center;
 }
 
-/* Counter Animation Styling */
+.hero-stats .stat-info p {
+  color: var(--vmu-text-light);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+}
+
 .counter-number {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  color: var(--vmu-accent);
-  text-shadow: 0 4px 20px rgba(255, 194, 14, 0.4);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: var(--vmu-primary);
   line-height: 1;
   display: inline-block;
-  transition: all 0.3s ease;
-}
-
-.hero-stats .stat:hover .counter-number {
-  color: var(--vmu-white);
-  text-shadow: 0 4px 25px rgba(255, 194, 14, 0.6);
-  transform: scale(1.05);
+  letter-spacing: -0.02em;
 }
 
 /* Section Headers */
@@ -458,7 +411,7 @@
   left: 1rem;
   padding: 1rem;
   background-color: rgba(0, 62, 128, 0.25);
-  backdrop-filter: blur(15px);
+  /* backdrop-filter removed for performance */
   color: var(--vmu-white);
   border-radius: 0.75rem;
 }
@@ -488,6 +441,59 @@
 
 .gallery-callout .gallery-callout-row:nth-child(2) {
   align-items: flex-start;
+}
+
+/* ===== WAVE DIVIDERS ===== */
+
+.wave-divider {
+  display: block;
+  width: 100%;
+  height: auto;
+  line-height: 0;
+}
+
+.wave-divider--hero {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  height: 60px;
+  pointer-events: none;
+}
+
+.wave-divider-wrap {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+  margin-top: -1px;
+  overflow: hidden;
+}
+
+.wave-divider-wrap--blue {
+  background: var(--vmu-white);
+}
+
+.wave-divider-wrap--blue .wave-divider {
+  height: 45px;
+}
+
+.wave-divider-wrap--light {
+  background: var(--vmu-gray);
+}
+
+.wave-divider-wrap--light .wave-divider {
+  height: 40px;
+}
+
+@media (max-width: 768px) {
+  .wave-divider--hero {
+    height: 35px;
+  }
+  .wave-divider-wrap--blue .wave-divider,
+  .wave-divider-wrap--light .wave-divider {
+    height: 25px;
+  }
 }
 
 /* ===== HERO SECTIONS ===== */
@@ -528,9 +534,9 @@
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(0, 62, 128, 0.7) 0%,
-    rgba(0, 160, 227, 0.5) 50%,
-    rgba(255, 194, 14, 0.3) 100%
+    rgba(0, 62, 128, 0.65) 0%,
+    rgba(0, 160, 227, 0.45) 50%,
+    rgba(0, 62, 128, 0.35) 100%
   );
   z-index: 2;
 }
@@ -657,209 +663,111 @@
   height: 20px;
 }
 
-/* Countdown Section - Thiết kế chuyên nghiệp */
+/* Countdown Section — clean, solid */
 .countdown-section {
   position: relative;
-  min-height: 100vh;
   width: 100%;
-  background: linear-gradient(135deg, var(--vmu-primary) 0%, var(--vmu-secondary) 100%);
+  background: var(--vmu-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 4rem 0;
+  padding: 5rem 0;
 }
 
 .countdown-bg-pattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 20%, rgba(255, 194, 14, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 194, 14, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(0, 160, 227, 0.05) 0%, transparent 70%);
-  z-index: 1;
+  display: none;
 }
 
 .countdown-content {
   position: relative;
-  z-index: 5;
+  z-index: 2;
   text-align: center;
   color: var(--vmu-white);
-  max-width: 1200px;
+  max-width: 900px;
   padding: 0 2rem;
   width: 100%;
 }
 
-/* Countdown Header */
 .countdown-header {
-  margin-bottom: 4rem;
-  position: relative;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 3rem;
 }
 
 .countdown-main-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
   color: var(--vmu-white);
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
   line-height: 1.2;
-  position: relative;
-  z-index: 11;
 }
 
 .countdown-subtitle {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 700;
-  color: var(--vmu-accent);
-  text-shadow: 0 4px 20px rgba(255, 194, 14, 0.8);
-  letter-spacing: 0.1em;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  position: relative;
-  z-index: 11;
 }
 
-/* Countdown Timer Container */
+/* Countdown Timer — clean */
 .countdown-timer-container {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  z-index: 6;
 }
 
 .countdown-timer {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 24px;
-  padding: 2rem 3rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  gap: 1.5rem;
 }
 
-/* Countdown Items - Thiết kế chuyên nghiệp */
+/* Countdown Items — typography-first */
 .countdown-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.8rem;
-  min-width: 100px;
-}
-
-.countdown-number {
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 900;
-  color: var(--vmu-white);
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  line-height: 1;
-  min-height: 1.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(255, 194, 14, 0.2) 0%, rgba(255, 194, 14, 0.1) 100%);
-  border-radius: 20px;
-  padding: 1.5rem 1.2rem;
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 194, 14, 0.4);
-  box-shadow: 
-    0 15px 40px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
+  gap: 0.5rem;
   min-width: 80px;
 }
 
-.countdown-number::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 194, 14, 0.3), transparent);
-  transition: left 0.8s ease;
-}
-
-.countdown-number:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 
-    0 25px 60px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  background: linear-gradient(135deg, rgba(255, 194, 14, 0.3) 0%, rgba(255, 194, 14, 0.2) 100%);
-  border-color: rgba(255, 194, 14, 0.6);
-}
-
-.countdown-number:hover::before {
-  left: 100%;
-}
-
-.countdown-label {
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+.countdown-number {
+  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  font-weight: 300;
   color: var(--vmu-white);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  opacity: 0.9;
-  transition: all 0.3s ease;
-}
-
-.countdown-item:hover .countdown-label {
-  opacity: 1;
-  color: var(--vmu-accent);
-  text-shadow: 0 2px 15px rgba(255, 194, 14, 0.4);
-}
-
-/* Countdown Separator - Thiết kế đẹp */
-.countdown-separator {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  color: var(--vmu-accent);
-  text-shadow: 0 4px 20px rgba(255, 194, 14, 0.4);
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: countdownPulse 2s ease-in-out infinite;
-  margin: 0 0.5rem;
+  letter-spacing: -0.02em;
 }
 
-@keyframes countdownPulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.1);
-  }
-}
-
-/* Countdown Message */
-.countdown-message {
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
+.countdown-label {
+  font-size: 0.6875rem;
   font-weight: 500;
-  color: var(--vmu-white);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.countdown-separator {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  margin: 0 0.25rem;
+}
+
+.countdown-message {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
   margin-top: 2rem;
-  opacity: 0.9;
-  line-height: 1.6;
-  max-width: 800px;
+  line-height: 1.7;
+  max-width: 520px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -888,7 +796,7 @@
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  /* backdrop-filter removed for performance */
   border: 2px solid transparent;
 }
 
@@ -989,12 +897,11 @@
   }
 
   .hero-stats .container {
-    flex-direction: column;
-    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
   }
 
   .hero-stats .stat {
-    aspect-ratio: 16/6;
     padding: 1.5rem 1rem;
   }
 
@@ -1032,31 +939,38 @@
     display: none;
   }
 
-  /* Countdown Responsive */
+  /* Countdown Responsive — keep horizontal */
   .countdown-timer {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 2rem 1.5rem;
+    flex-direction: row;
+    gap: 0.5rem;
   }
-  
+
   .countdown-timer .countdown-item {
-    min-width: 80px;
+    min-width: auto;
   }
-  
+
   .countdown-separator {
-    display: none;
+    display: flex;
+    font-size: 1.2rem;
   }
-  
+
+  .countdown-number {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  .countdown-label {
+    font-size: 0.5625rem;
+  }
+
   .countdown-main-title {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.4rem, 5vw, 2rem);
   }
-  
+
   .countdown-subtitle {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1rem, 3vw, 1.4rem);
   }
-  
+
   .countdown-header {
-    padding: 1.5rem;
     margin-bottom: 2rem;
   }
 }
@@ -1078,12 +992,12 @@
   }
   
   .countdown-separator {
-    display: none;
+    display: flex;
+    font-size: 1.5rem;
   }
-  
+
   .countdown-number {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    padding: 1rem 0.8rem;
+    font-size: clamp(2rem, 5vw, 3rem);
   }
   
   .countdown-header {
@@ -1111,15 +1025,11 @@
   }
 
   .hero-stats .container {
-    gap: 1.8rem;
-  }
-
-  .hero-stats .stat {
-    padding: 1.8rem 1.2rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .counter-number {
-    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
   }
   
   .coming-platforms {
@@ -1135,19 +1045,20 @@
 }
 
 @media (max-width: 768px) {
-  .countdown-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .countdown-timer {
+    gap: 0.75rem;
   }
-  
-  .countdown-item {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  
+
   .countdown-number {
-    min-width: 80px;
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .countdown-separator {
+    font-size: 1.5rem;
+  }
+
+  .hero-stats .container {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

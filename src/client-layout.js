@@ -1,66 +1,63 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
 import { ReactLenis } from "lenis/react";
 import { ViewTransitions } from "next-view-transitions";
+import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ClientLayout({ children, topBar }) {
+  const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const [useLenis, setUseLenis] = useState(true);
+  const [useLenis, setUseLenis] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
-    
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1000);
+    if (typeof window === "undefined") {
+      return undefined;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const coarsePointerQuery = window.matchMedia("(pointer: coarse)");
+
+    const updateLayoutMode = () => {
+      const mobile = window.innerWidth <= 1000;
+      const shouldUseLenis =
+        pathname !== "/" && !mobile && !coarsePointerQuery.matches;
+
+      setIsMobile(mobile);
+      setUseLenis(shouldUseLenis);
     };
 
-    checkMobile();
+    updateLayoutMode();
 
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener("resize", updateLayoutMode);
+    coarsePointerQuery.addEventListener?.("change", updateLayoutMode);
 
-    // Register GSAP plugins
-    if (typeof window !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
-    }
+    return () => {
+      window.removeEventListener("resize", updateLayoutMode);
+      coarsePointerQuery.removeEventListener?.("change", updateLayoutMode);
+    };
+  }, [pathname]);
 
-    // Check if we're on homepage - disable Lenis for full GSAP scroll
-    const currentPath = window.location.pathname;
-    if (currentPath === '/') {
-      setUseLenis(false);
-    }
-
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  // Simple and effective smooth scroll settings
   const scrollSettings = {
-    duration: 1.2,
+    duration: 1,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     direction: "vertical",
     gestureDirection: "vertical",
     smooth: true,
-    smoothTouch: isMobile ? true : false,
-    touchMultiplier: 2,
+    smoothTouch: false,
+    touchMultiplier: 1.15,
     infinite: false,
     lerp: 0.1,
     wheelMultiplier: 1,
     orientation: "vertical",
     smoothWheel: true,
-    syncTouch: true,
-    normalizeWheel: true,
+    syncTouch: false,
+    normalizeWheel: !isMobile,
     autoResize: true,
-    // Minimal prevent to avoid conflicts with GSAP ScrollTrigger
-    prevent: (node) => {
-      return node.classList.contains('gs_reveal') || 
-             node.classList.contains('featured-achievement-card') ||
-             node.classList.contains('timeline-item') ||
-             node.classList.contains('features__item') ||
-             node.classList.contains('community-voice-content');
-    }
   };
 
   return (

@@ -40,141 +40,42 @@ const Timeline = memo(() => {
         return window.innerWidth > 768 && window.innerWidth <= 1024;
       };
 
-      // Performance optimization for mobile
-      const optimizeForMobile = () => {
-        if (isMobile()) {
-          gsap.config({
-            force3D: true,
-            nullTargetWarn: false
-          });
-          document.body.classList.add('mobile-device');
-        }
-        
-        if (isTablet()) {
-          document.body.classList.add('tablet-device');
-        }
-      };
+      // Cache device checks once (avoid repeated layout reflow)
+      const mobile = isMobile();
+      const tablet = isTablet();
 
-      optimizeForMobile();
+      // Simplified reveal — only transform + opacity (GPU composited)
+      const createRevealTimeline = (elem) => {
+        let x = 0, y = mobile ? 30 : 60;
 
-      // Advanced Timeline-based reveal system with mobile optimization
-      const createRevealTimeline = (elem, direction = 1) => {
-        const mobile = isMobile();
-        const tablet = isTablet();
-        
-        const tl = gsap.timeline({ 
-          defaults: {
-            duration: mobile ? 0.8 : tablet ? 1.0 : 1.25, 
-            ease: mobile ? "power2.out" : "expo.out",
-            overwrite: "auto"
-          }
-        });
-
-        let x = 0, y = direction * (mobile ? 50 : 100);
-        
         if(elem.classList.contains("gs_reveal_fromLeft")) {
-          x = mobile ? -50 : -100;
+          x = mobile ? -30 : -60;
           y = 0;
         } else if (elem.classList.contains("gs_reveal_fromRight")) {
-          x = mobile ? 50 : 100;
+          x = mobile ? 30 : 60;
           y = 0;
         }
 
-        // Set initial state
-        gsap.set(elem, { x: x, y: y, autoAlpha: 0 });
-        
-        // Create reveal animation
-        tl.to(elem, {
-          x: 0,
-          y: 0,
-          autoAlpha: 1,
-          ease: mobile ? "power2.out" : "expo.out"
-        });
-
-        return tl;
+        gsap.fromTo(elem,
+          { x, y, autoAlpha: 0 },
+          { x: 0, y: 0, autoAlpha: 1, duration: mobile ? 0.6 : 0.8, ease: "power2.out", overwrite: "auto" }
+        );
       };
 
-      // Feature item timeline with staggered children and mobile optimization
-      const createFeatureTimeline = (item) => {
-        const mobile = isMobile();
-        const tablet = isTablet();
-        
-        const tl = gsap.timeline({
-          defaults: { 
-            duration: mobile ? 0.6 : tablet ? 0.7 : 0.8, 
-            ease: "power2.out" 
-          }
-        });
-
-        const image = item.querySelector(".features__image");
-        const content = item.querySelector(".features__content");
-        const title = item.querySelector(".features__title");
-        const description = item.querySelector(".features__description");
-
-        // Determine animation direction with mobile optimization
+      // Simplified feature reveal — fewer tweens, only transform+opacity
+      const revealFeature = (item) => {
         const isLeft = item.classList.contains("features__item--left");
-        const imageX = isLeft ? (mobile ? -50 : -100) : (mobile ? 50 : 100);
-        const contentX = isLeft ? (mobile ? 50 : 100) : (mobile ? -50 : -100);
+        const dir = isLeft ? -1 : 1;
+        const dist = mobile ? 30 : 50;
 
-        // Animate main containers
-        tl.fromTo(image, 
-          { x: imageX, opacity: 0, scale: mobile ? 0.95 : 0.9 },
-          { x: 0, opacity: 1, scale: 1, duration: mobile ? 0.8 : 1 }
-        )
-        .fromTo(content,
-          { x: contentX, opacity: 0 },
-          { x: 0, opacity: 1, duration: mobile ? 0.8 : 1 },
-          mobile ? "-=0.5" : "-=0.7"
+        gsap.fromTo(item,
+          { x: dir * dist, autoAlpha: 0 },
+          { x: 0, autoAlpha: 1, duration: mobile ? 0.6 : 0.8, ease: "power2.out" }
         );
-
-        // Stagger child elements with mobile optimization
-        tl.fromTo([title, description],
-          { y: mobile ? 20 : 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: mobile ? 0.5 : 0.6, stagger: mobile ? 0.1 : 0.2 },
-          mobile ? "-=0.3" : "-=0.5"
-        );
-
-        return tl;
       };
 
-      // Card hover timeline with mobile optimization
-      const createCardHoverTimeline = (card) => {
-        const mobile = isMobile();
-        const tablet = isTablet();
-        
-        const tl = gsap.timeline({ paused: true });
-        const img = card.querySelector('.features__img');
-        
-        // Different hover effects for mobile vs desktop
-        if (mobile) {
-          // Simplified hover for mobile (touch devices)
-          tl.to(card, {
-            scale: 1.02,
-            y: -5,
-            boxShadow: "0 10px 20px rgba(30, 58, 138, 0.2)",
-            borderColor: "var(--vmu-secondary)",
-            duration: 0.2,
-            ease: "power2.out"
-          });
-        } else {
-          // Full hover effects for desktop
-          tl.to(card, {
-            scale: 1.05,
-            y: -10,
-            boxShadow: "0 20px 40px rgba(30, 58, 138, 0.3)",
-            borderColor: "var(--vmu-secondary)",
-            duration: 0.3,
-            ease: "power2.out"
-          })
-          .to(img, {
-            scale: 1.1,
-            duration: 0.3,
-            ease: "power2.out"
-          }, 0);
-        }
-
-        return tl;
-      };
+      // Hover handled by CSS only — no GSAP needed for hover
+      // (boxShadow animation causes paint, not composited)
 
       const hide = (elem) => {
         gsap.set(elem, { autoAlpha: 0 });
@@ -183,60 +84,26 @@ const Timeline = memo(() => {
       // Set initial states
       gsap.set(".features__item", { opacity: 0 });
 
-      // Individual reveal animations with ScrollTrigger
+      // Reveal animations — once: true, no re-trigger
       gsap.utils.toArray(".gs_reveal").forEach(function(elem) {
         hide(elem);
-        
         ScrollTrigger.create({
           trigger: elem,
-          start: isMobile() ? "top 90%" : "top 85%",
-          end: isMobile() ? "bottom 10%" : "bottom 15%",
-          once: false, // Allow multiple triggers
-          refreshPriority: 1, // Higher priority for GSAP scroll
-          onEnter: function() { 
-            const tl = createRevealTimeline(elem);
-            tl.play();
-          }, 
-          onEnterBack: function() { 
-            // Keep the element visible when scrolling back up
-            gsap.set(elem, { autoAlpha: 1, x: 0, y: 0 });
-          }
+          start: mobile ? "top 92%" : "top 85%",
+          once: true,
+          onEnter: () => createRevealTimeline(elem),
         });
       });
 
-      // Feature items with advanced timeline
+      // Feature items — once: true, simplified
       gsap.utils.toArray(".features__item").forEach(function(item) {
-        const featureTL = createFeatureTimeline(item);
-        
+        gsap.set(item, { autoAlpha: 0 });
         ScrollTrigger.create({
           trigger: item,
-          start: isMobile() ? "top 85%" : "top 80%",
-          end: isMobile() ? "bottom 15%" : "bottom 20%",
-          once: false, // Allow multiple triggers
-          refreshPriority: 1, // Higher priority for GSAP scroll
-          onEnter: function() { 
-            featureTL.play();
-          },
-          onEnterBack: function() { 
-            // Keep the timeline at its end state when scrolling back up
-            featureTL.progress(1);
-          }
+          start: mobile ? "top 88%" : "top 82%",
+          once: true,
+          onEnter: () => revealFeature(item),
         });
-      });
-
-      // Card hover effects with touch support
-      gsap.utils.toArray(".features__card").forEach(function(card) {
-        const hoverTL = createCardHoverTimeline(card);
-        
-        if (isMobile()) {
-          // Touch events for mobile
-          card.addEventListener('touchstart', () => hoverTL.play());
-          card.addEventListener('touchend', () => hoverTL.reverse());
-        } else {
-          // Mouse events for desktop
-          card.addEventListener('mouseenter', () => hoverTL.play());
-          card.addEventListener('mouseleave', () => hoverTL.reverse());
-        }
       });
 
       // Handle window resize for responsive behavior
@@ -247,12 +114,23 @@ const Timeline = memo(() => {
           ScrollTrigger.refresh();
         }, 250);
       };
-      
+
       window.addEventListener('resize', handleResize);
 
+      // Track ScrollTriggers created by this component for targeted cleanup
+      const timelineScrollTriggers = ScrollTrigger.getAll().filter(trigger => {
+        const triggerEl = trigger.trigger;
+        return triggerEl && (
+          triggerEl.closest('.features') ||
+          triggerEl.classList?.contains('gs_reveal') ||
+          triggerEl.classList?.contains('features__item')
+        );
+      });
+
       return () => {
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        timelineScrollTriggers.forEach(trigger => trigger.kill());
         window.removeEventListener('resize', handleResize);
+        clearTimeout(resizeTimeout);
       };
     } catch (error) {
       console.error('Timeline Animation Error:', error);

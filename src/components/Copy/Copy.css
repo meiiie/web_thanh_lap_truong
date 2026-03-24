@@ -1,7 +1,13 @@
 .line {
   position: relative;
-  transform: translateY(100%);
-  will-change: transform;
-  padding-bottom: 0.2em;
-  margin-bottom: -0.2em;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+  /* Safety: CSS forces text visible after 1.5s if GSAP fails.
+     When GSAP works, its inline transform overrides this. */
+  animation: line-reveal 0.8s ease-out 1.5s both;
+}
+
+@keyframes line-reveal {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0%); }
 }

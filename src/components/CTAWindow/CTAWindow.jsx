@@ -31,7 +31,7 @@ const CTAWindow = ({ img, header, callout, description }) => {
           <div className="cta-window-button">
             <AnimatedButton
               label="Đăng ký tham gia"
-              route="/connect"
+              route="/tham-gia"
               delay={0.2}
             />
           </div>

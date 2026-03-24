@@ -11,6 +11,8 @@ import CustomEase from "gsap/CustomEase";
 // import { useGSAP } from "@gsap/react";
 // import { useLenis } from "lenis/react";
 
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import Nav from "@/components/Nav/Nav";
 import ConditionalFooter from "@/components/ConditionalFooter/ConditionalFooter";
 import AnimatedButton from "@/components/AnimatedButton/AnimatedButton";
@@ -20,11 +22,13 @@ import VimaruTitle from "@/components/VimaruTitle/VimaruTitle";
 import CounterAnimation from "@/components/CounterAnimation/CounterAnimation";
 import ClientOnly from "@/components/ClientOnly/ClientOnly";
 import CountdownTimer from "@/components/CountdownTimer/CountdownTimer";
-import Timeline from "@/components/Timeline/Timeline";
-import AnniversaryProgram from "@/components/AnniversaryProgram/AnniversaryProgram";
-import FeaturedAchievements from "@/components/FeaturedAchievements/FeaturedAchievements";
-import CommunityVoices from "@/components/CommunityVoices/CommunityVoices";
-import GalleryCallout from "@/components/GalleryCallout/GalleryCallout";
+
+// Lazy-load heavy below-fold components for faster initial page load
+const Timeline = dynamic(() => import("@/components/Timeline/Timeline"), { ssr: false });
+const AnniversaryProgram = dynamic(() => import("@/components/AnniversaryProgram/AnniversaryProgram"), { ssr: false });
+// FeaturedAchievements removed — overlaps with Timeline, causes 3D transform lag
+// const CommunityVoices = dynamic(() => import("@/components/CommunityVoices/CommunityVoices"), { ssr: false });
+const GalleryCallout = dynamic(() => import("@/components/GalleryCallout/GalleryCallout"), { ssr: false });
 
 
 let isInitialLoad = true;
@@ -33,7 +37,7 @@ CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 export default function Home() {
   const tagsRef = useRef(null);
-  const [showPreloader, setShowPreloader] = useState(isInitialLoad);
+  const [showPreloader, setShowPreloader] = useState(false);
   const [loaderAnimating, setLoaderAnimating] = useState(false);
   const [isClient, setIsClient] = useState(false);
   // const lenis = useLenis();
@@ -81,151 +85,69 @@ export default function Home() {
 
   useEffect(() => {
     if (showPreloader) {
+      // Fix A: Respect prefers-reduced-motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        setShowPreloader(false);
+        setLoaderAnimating(false);
+        isInitialLoad = false;
+        return;
+      }
+
       setLoaderAnimating(true);
-      
-      // Master timeline cho toàn bộ preloader
-      const masterTl = gsap.timeline({
+
+      // Simplified preloader — text reveal only, ~2.5s total
+      // Skip counter animation (unreliable with clip-path overflow)
+      gsap.set(".counter", { display: "none" });
+      gsap.set(".spinner", { opacity: 1 });
+      gsap.set(".intro-logo", { opacity: 0 });
+      gsap.set(".word h1", { y: "120%" });
+      gsap.set(".divider", { scaleY: 0 });
+
+      const tl = gsap.timeline({
         delay: 0.5,
-        defaults: {
-          ease: "power2.out",
-        },
+        defaults: { ease: "power2.out" },
       });
 
-      // Phase 1: Loading Counter (00 -> ẩn -> 26 -> ẩn -> 65 -> ẩn -> 98 -> ẩn -> 99)
-      const counts = document.querySelectorAll(".count");
-      const countDuration = 0.6;
-      const countDelay = 1.2; // Tăng delay để có thời gian ẩn
-      
-      // Bắt đầu với tất cả counts ẩn
-      gsap.set(counts, { opacity: 0, scale: 0.8 });
-      gsap.set(counts, { y: "20px" });
-      
-      // Hiển thị từng count một cách tuần tự với ẩn hoàn toàn
-      counts.forEach((count, index) => {
-        const digits = count.querySelectorAll(".digit h1");
-        
-        // Bắt đầu với digits ẩn
-        gsap.set(digits, { y: "120%" });
-        
-        // Timeline cho từng count
-        const countTl = gsap.timeline({
-          delay: index * countDelay,
-        });
-        
-        // Hiển thị count với animation mượt mà
-        countTl.to(count, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: countDuration,
-          ease: "power2.out"
-        });
-        
-        // Animation digits từ dưới lên
-        countTl.to(digits, {
-          y: "0%",
-          duration: countDuration * 0.8,
-          stagger: 0.1,
-          ease: "power2.out"
-        }, "-=0.3");
-        
-        // Giữ count hiển thị một chút
-        countTl.to({}, { duration: 0.3 });
-        
-        // Ẩn count hiện tại hoàn toàn (trừ count cuối cùng)
-        if (index < counts.length - 1) {
-          countTl.to(count, {
-            opacity: 0,
-            scale: 0.8,
-            y: "-20px",
-            duration: countDuration * 0.5,
-            ease: "power2.in"
-          });
-        }
-      });
+      // Phase 1: Spinner → Text reveal (~1.2s)
+      tl.to(".spinner", { opacity: 0, duration: 0.3 })
+        .to(".intro-logo", { opacity: 1, duration: 0.4 })
+        .to(".word h1", { y: "0%", duration: 0.6, stagger: 0.1, ease: "power3.out" }, "-=0.2")
+        .to(".divider", { scaleY: 1, duration: 0.5, ease: "power2.inOut" }, "-=0.35");
 
-      // Phase 2: Counter fade out (ẩn count cuối cùng)
-      masterTl.to(".count", {
-        opacity: 0,
-        scale: 0.8,
-        y: "-20px",
-        duration: 0.4,
-        stagger: 0.05,
-        ease: "power2.in"
-      }, counts.length * countDelay + 0.5);
+      // Phase 2: Hold + text exit (~0.8s)
+      tl.to({}, { duration: 0.4 })
+        .to("#word-1 h1", { y: "100%", duration: 0.4, ease: "power2.in" })
+        .to("#word-2 h1", { y: "-100%", duration: 0.4, ease: "power2.in" }, "-=0.4")
+        .to(".divider", { opacity: 0, duration: 0.2 }, "-=0.2");
 
-      // Phase 3: Spinner fade out
-      masterTl.to(".spinner", {
-        opacity: 0,
-        duration: 0.4,
-      }, "-=0.2");
-
-      // Phase 4: Text reveal ("Trường Đại học Hàng hải Việt Nam")
-      masterTl.to(".intro-logo", {
-        opacity: 1,
-        duration: 0.5,
-      }, "-=0.1");
-
-      masterTl.to(".word h1", {
-        y: "0%",
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power2.out"
-      }, "-=0.3");
-
-      // Phase 5: Divider animation
-      masterTl.to(".divider", {
-        scaleY: "100%",
-        duration: 0.6,
-        ease: "power2.out"
-      }, "-=0.4");
-
-      // Phase 6: Text exit animation
-      masterTl.to("#word-1 h1", {
-        y: "100%",
-        duration: 0.6,
-        delay: 0.3,
-        ease: "power2.in"
-      });
-
-      masterTl.to("#word-2 h1", {
-        y: "-100%",
-        duration: 0.6,
-        ease: "power2.in"
-      }, "-=0.6");
-
-      // Phase 7: Divider fade out
-      masterTl.to(".divider", {
-        opacity: 0,
-        duration: 0.3,
-        delay: 0.2,
-      }, "-=0.3");
-
-      // Phase 8: Block exit animation
-      masterTl.to(".block", {
+      // Phase 3: Blocks exit — reveal hero (~0.6s)
+      tl.to(".block", {
         clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-        duration: 0.8,
-        stagger: 0.1,
-        delay: 0.3,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power3.inOut",
         onStart: () => {
-          // Animation cho hero background image
           const heroImg = document.querySelector(".hero-main-bg img");
-          if (heroImg) {
-            gsap.to(heroImg, { scale: 1, duration: 1.5, ease: "power2.out" });
-          }
+          if (heroImg) gsap.to(heroImg, { scale: 1, duration: 1.2, ease: "power2.out" });
         },
         onComplete: () => {
-          // Ẩn hoàn toàn preloader
-          gsap.to(".loader", {
-            opacity: 0,
-            duration: 0.5,
-            onComplete: () => {
-              setShowPreloader(false);
-              setLoaderAnimating(false);
-            }
-          });
+          const loaderEl = document.querySelector(".loader");
+          if (loaderEl) {
+            gsap.to(loaderEl, {
+              opacity: 0, duration: 0.3,
+              onComplete: () => { setShowPreloader(false); setLoaderAnimating(false); }
+            });
+          } else {
+            setShowPreloader(false); setLoaderAnimating(false);
+          }
         },
-      }, "-=0.4");
+      });
+
+      // Cleanup: kill the master timeline if component unmounts during animation
+      return () => {
+        tl.kill();
+      };
     }
   }, [showPreloader]);
 
@@ -235,7 +157,7 @@ export default function Home() {
       const tags = tagsRef.current.querySelectorAll(".what-we-do-tag");
       gsap.set(tags, { opacity: 0, x: -40 });
 
-      ScrollTrigger.create({
+      const st = ScrollTrigger.create({
         trigger: tagsRef.current,
         start: "top 90%",
         once: true,
@@ -247,6 +169,11 @@ export default function Home() {
           ease: "power3.out",
         }),
       });
+
+      // Fix B: Clean up ScrollTrigger on unmount
+      return () => {
+        if (st) st.kill();
+      };
   }, []);
 
   return (
@@ -282,26 +209,10 @@ export default function Home() {
             </div>
             <div className="count">
               <div className="digit">
-                <h1>2</h1>
-              </div>
-              <div className="digit">
                 <h1>7</h1>
               </div>
-            </div>
-            <div className="count">
               <div className="digit">
-                <h1>6</h1>
-              </div>
-              <div className="digit">
-                <h1>5</h1>
-              </div>
-            </div>
-            <div className="count">
-              <div className="digit">
-                <h1>9</h1>
-              </div>
-              <div className="digit">
-                <h1>8</h1>
+                <h1>0</h1>
               </div>
             </div>
             <div className="count">
@@ -320,25 +231,30 @@ export default function Home() {
       {/* Hero Main Section */}
       <section className="hero-main">
         <div className="hero-main-bg">
-          <img src="/home/hero.jpg" alt="VMU Campus" />
+          <Image src="/vmu/official/home-hero.jpg" alt="VMU Campus - Trường Đại học Hàng hải Việt Nam" fill priority sizes="100vw" style={{objectFit: 'cover'}} />
         </div>
         <div className="hero-main-overlay"></div>
         <div className="hero-main-content">
-          <VimaruTitle 
-            delay={0.85} 
+          <VimaruTitle
+            delay={0.85}
             showPreloader={showPreloader}
           />
         </div>
+        {/* Wave: Hero → Countdown */}
+        <svg className="wave-divider wave-divider--hero" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,60 Q360,20 720,50 Q1080,80 1440,35 L1440,80 L0,80Z" fill="var(--vmu-primary)" />
+        </svg>
       </section>
 
-      {/* Coming Section */}
+      {/* Coming Section - commented out, redundant with Countdown */}
+      {/*
       <section className="coming-section">
         <div className="coming-bg"></div>
         <div className="coming-content">
           <div className="coming-logo">
             <img src="/logos/vimaru-logo.svg" alt="VMU Logo" />
           </div>
-          <Copy animateOnScroll={false} delay={showPreloader ? 10.1 : 0.95}>
+          <Copy animateOnScroll={true} delay={showPreloader ? 10.1 : 0.95}>
             <h2 className="coming-text">Coming<br/>April 1<br/>2026</h2>
           </Copy>
           <div className="coming-platforms">
@@ -357,13 +273,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Countdown Section */}
       <section className="countdown-section">
         <div className="countdown-bg-pattern"></div>
         <div className="countdown-content">
           <div className="countdown-header">
-            <Copy animateOnScroll={false} delay={showPreloader ? 10.15 : 1}>
+            <Copy animateOnScroll={true} delay={showPreloader ? 10.15 : 1}>
               <h1 className="countdown-main-title">Trường Đại Học Hàng Hải Việt Nam</h1>
               <h2 className="countdown-subtitle">Kỷ Niệm 70 Năm</h2>
             </Copy>
@@ -371,7 +288,7 @@ export default function Home() {
           
           <CountdownTimer />
           
-          <Copy animateOnScroll={false} delay={showPreloader ? 10.2 : 1.05}>
+          <Copy animateOnScroll={true} delay={showPreloader ? 10.2 : 1.05}>
             <p className="countdown-message">
               Chúng ta sẽ cùng nhau khám phá những cột mốc lịch sử, thành tựu 
               nổi bật và tầm nhìn tương lai của trường.
@@ -382,14 +299,14 @@ export default function Home() {
             <div className="hero-buttons">
               <AnimatedButton
                 label="Khám phá lịch sử"
-                route="/70-nam"
-                animateOnScroll={false}
+                route="/thu-vien"
+                animateOnScroll={true}
                 delay={showPreloader ? 10.3 : 1.15}
               />
               <AnimatedButton
                 label="Đăng ký tham gia"
-                route="/connect"
-                animateOnScroll={false}
+                route="/tham-gia"
+                animateOnScroll={true}
                 delay={showPreloader ? 10.45 : 1.3}
                 secondary={true}
               />
@@ -398,6 +315,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Wave: Countdown → Stats */}
+      <div className="wave-divider-wrap wave-divider-wrap--blue">
+        <svg className="wave-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,0 L0,30 Q240,60 480,35 Q720,10 960,40 Q1200,60 1440,25 L1440,0Z" fill="var(--vmu-primary)" />
+        </svg>
+      </div>
+
       {/* Hero Stats */}
       <section className="hero-stats">
         <div className="hero-stats-bg-pattern"></div>
@@ -405,29 +329,29 @@ export default function Home() {
           <div className="stat">
             <div className="stat-count">
               <h2>
-                <CounterAnimation 
-                  endValue="70" 
-                  duration={2000} 
-                  delay={200}
+                <CounterAnimation
+                  endValue="70"
+                  duration={1800}
+                  delay={100}
                   className="counter-number"
-                  animateOnScroll={false}
+                  animateOnScroll={true}
                 />
               </h2>
             </div>
             <div className="stat-divider"></div>
             <div className="stat-info">
-              <p>Năm thành lập</p>
+              <p>Năm lịch sử</p>
             </div>
           </div>
           <div className="stat">
             <div className="stat-count">
               <h2>
-                <CounterAnimation 
-                  endValue="1956" 
-                  duration={2500} 
-                  delay={400}
+                <CounterAnimation
+                  endValue="1956"
+                  duration={2000}
+                  delay={200}
                   className="counter-number"
-                  animateOnScroll={false}
+                  animateOnScroll={true}
                 />
               </h2>
             </div>
@@ -439,35 +363,35 @@ export default function Home() {
           <div className="stat">
             <div className="stat-count">
               <h2>
-                <CounterAnimation 
-                  endValue="50+" 
-                  duration={1800} 
-                  delay={600}
+                <CounterAnimation
+                  endValue="Gần 1.000"
+                  duration={1500}
+                  delay={300}
                   className="counter-number"
-                  animateOnScroll={false}
+                  animateOnScroll={true}
                 />
               </h2>
             </div>
             <div className="stat-divider"></div>
             <div className="stat-info">
-              <p>Chuyên ngành đào tạo</p>
+              <p>Cán bộ, giảng viên</p>
             </div>
           </div>
           <div className="stat">
             <div className="stat-count">
               <h2>
-                <CounterAnimation 
-                  endValue="25K+" 
-                  duration={2200} 
-                  delay={800}
+                <CounterAnimation
+                  endValue="20.000+"
+                  duration={1800}
+                  delay={400}
                   className="counter-number"
-                  animateOnScroll={false}
+                  animateOnScroll={true}
                 />
               </h2>
             </div>
             <div className="stat-divider"></div>
             <div className="stat-info">
-              <p>Cựu sinh viên</p>
+              <p>Sinh viên</p>
             </div>
           </div>
         </div>
@@ -475,24 +399,31 @@ export default function Home() {
 
 
 
+      {/* Wave: Stats → Timeline */}
+      <div className="wave-divider-wrap wave-divider-wrap--light">
+        <svg className="wave-divider" viewBox="0 0 1440 50" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,50 Q180,15 360,30 Q540,50 720,20 Q900,0 1080,25 Q1260,45 1440,15 L1440,50Z" fill="var(--vmu-white)" opacity="0.5" />
+          <path d="M0,50 Q200,25 400,38 Q600,50 800,28 Q1000,10 1200,32 Q1350,45 1440,22 L1440,50Z" fill="var(--vmu-white)" />
+        </svg>
+      </div>
+
       {/* Lịch sử và cột mốc */}
       <Timeline />
 
       {/* Chương trình kỷ niệm */}
       <AnniversaryProgram />
 
-      {/* Thành tựu nổi bật */}
-      <FeaturedAchievements />
+      {/* Thành tựu nổi bật - removed: overlaps Timeline + causes 3D lag */}
 
       {/* Tiếng nói từ cộng đồng */}
-      <CommunityVoices />
+      {/* <CommunityVoices /> */}
 
       {/* Thư viện hình ảnh */}
       <GalleryCallout />
 
       {/* Call to Action */}
       <CTAWindow
-        img="/home/home-cta-window.jpg"
+        img="/vmu/official/event-1.jpg"
         header="Tham gia kỷ niệm 70 năm"
         callout="Cùng chúng tôi kỷ niệm một cột mốc quan trọng"
         description="Đăng ký tham gia các hoạt động kỷ niệm 70 năm thành lập trường Đại học Hàng hải Việt Nam. Hãy để lại thông tin để nhận thông báo về các sự kiện sắp tới."

@@ -82,8 +82,14 @@ const FeaturedAchievements = memo(() => {
       }
     });
 
+    // Track ScrollTriggers created by this component for targeted cleanup
+    const achievementTriggers = ScrollTrigger.getAll().filter(trigger => {
+      const triggerEl = trigger.trigger;
+      return triggerEl && triggerEl.classList?.contains('featured-achievement-card');
+    });
+
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      achievementTriggers.forEach((trigger) => trigger.kill());
     };
   }, []);
 

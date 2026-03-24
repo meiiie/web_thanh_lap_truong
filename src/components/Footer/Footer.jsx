@@ -1,4 +1,5 @@
 "use client";
+
 import "./Footer.css";
 
 import { useRef } from "react";
@@ -6,16 +7,42 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  RiFacebookCircleLine,
+  RiGlobalLine,
+  RiGraduationCapLine,
+  RiMailLine,
+} from "react-icons/ri";
 
+import { siteContact, siteNavigation } from "@/data/site-content";
+import { siteCopyright } from "@/data/seo";
 import { useViewTransition } from "@/hooks/useViewTransition";
 import Copy from "../Copy/Copy";
 
-import { RiLinkedinBoxLine } from "react-icons/ri";
-import { RiInstagramLine } from "react-icons/ri";
-import { RiDribbbleLine } from "react-icons/ri";
-import { RiYoutubeLine } from "react-icons/ri";
-
 gsap.registerPlugin(ScrollTrigger);
+
+const externalLinks = [
+  {
+    href: siteContact.website,
+    label: "Website chính thức",
+    icon: <RiGlobalLine />,
+  },
+  {
+    href: siteContact.admissionsSite,
+    label: "Tuyển sinh VMU",
+    icon: <RiGraduationCapLine />,
+  },
+  {
+    href: siteContact.facebook,
+    label: "Facebook VMU",
+    icon: <RiFacebookCircleLine />,
+  },
+  {
+    href: `mailto:${siteContact.email}`,
+    label: "Email VMU",
+    icon: <RiMailLine />,
+  },
+];
 
 const Footer = () => {
   const { navigateWithTransition } = useViewTransition();
@@ -56,67 +83,29 @@ const Footer = () => {
                 </Copy>
               </div>
               <Copy delay={0.2}>
-                <h2>Đào tạo nguồn nhân lực chất lượng cao cho ngành hàng hải Việt Nam.</h2>
+                <h2>
+                  Chào mừng mốc 70 năm thành lập với một website giới thiệu gọn,
+                  rõ, đúng ngữ cảnh và ưu tiên trải nghiệm đọc trên cả desktop
+                  lẫn mobile.
+                </h2>
               </Copy>
             </div>
           </div>
           <div className="footer-meta-col">
             <div className="footer-nav-links">
               <Copy delay={0.1}>
-                <a
-                  href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateWithTransition("/");
-                  }}
-                >
-                  <h3>Trang chủ</h3>
-                </a>
-                <a
-                  href="/gioi-thieu"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateWithTransition("/gioi-thieu");
-                  }}
-                >
-                  <h3>Về trường</h3>
-                </a>
-                <a
-                  href="/su-kien"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateWithTransition("/su-kien");
-                  }}
-                >
-                  <h3>Sự kiện</h3>
-                </a>
-                <a
-                  href="/tam-nhin"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateWithTransition("/tam-nhin");
-                  }}
-                >
-                  <h3>Tầm nhìn</h3>
-                </a>
-                <a
-                  href="/thu-vien"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateWithTransition("/thu-vien");
-                  }}
-                >
-                  <h3>Thư viện</h3>
-                </a>
-                <a
-                  href="/tham-gia"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateWithTransition("/tham-gia");
-                  }}
-                >
-                  <h3>Tham dự</h3>
-                </a>
+                {siteNavigation.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      navigateWithTransition(item.href);
+                    }}
+                  >
+                    <h3>{item.label}</h3>
+                  </a>
+                ))}
               </Copy>
             </div>
           </div>
@@ -124,26 +113,24 @@ const Footer = () => {
         <div className="container footer-socials">
           <div className="footer-meta-col">
             <div className="footer-socials-wrapper" ref={socialIconsRef}>
-              <div className="icon">
-                <RiLinkedinBoxLine />
-              </div>
-              <div className="icon">
-                <RiInstagramLine />
-              </div>
-              <div className="icon">
-                <RiDribbbleLine />
-              </div>
-              <div className="icon">
-                <RiYoutubeLine />
-              </div>
+              {externalLinks.map((link) => (
+                <a
+                  key={link.href}
+                  className="icon"
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={link.label}
+                  title={link.label}
+                >
+                  {link.icon}
+                </a>
+              ))}
             </div>
           </div>
           <div className="footer-meta-col">
             <Copy delay={0.1}>
-              <p>
-                Chúng tôi tin rằng giáo dục không chỉ là truyền đạt kiến thức mà còn là 
-                xây dựng nền tảng vững chắc cho tương lai của mỗi sinh viên.
-              </p>
+              <p className="footer-source-note">{siteContact.sourceNote}</p>
             </Copy>
           </div>
         </div>
@@ -151,14 +138,18 @@ const Footer = () => {
       <div className="footer-outro">
         <div className="container">
           <div className="footer-header">
-            <img src="/logos/vimaru-logo.svg" alt="Trường Đại học Hàng hải Việt Nam" />
+            <img
+              src="/logos/Logo-truong.png"
+              alt="Logo Trường Đại học Hàng hải Việt Nam"
+            />
           </div>
           <div className="footer-copyright">
+            <p>{siteContact.address}</p>
             <p>
-              Địa chỉ: 484 Lạch Tray, Ngô Quyền, Hải Phòng
+              Điện thoại: {siteContact.phonePrimary} / {siteContact.phoneSecondary}
+              {" | "}Email: {siteContact.email}
             </p>
-            <p>Điện thoại: 0225.3.747.024 | Email: info@vimaru.edu.vn</p>
-            <p>Bản quyền &copy; 2025 The Wiii Lab</p>
+            <p>{siteCopyright}</p>
           </div>
         </div>
       </div>

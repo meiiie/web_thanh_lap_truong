@@ -297,7 +297,7 @@ export default function Gallery() {
         const itemNum = (Math.abs(row * columns + col) % itemCount) + 1;
         const img = document.createElement("img");
         img.src = `/archive/archive-${itemNum}.jpg`;
-        img.alt = `Image ${itemNum}`;
+        img.alt = items[(itemNum - 1) % items.length];
         item.appendChild(img);
 
         item.addEventListener("click", (e) => {
@@ -349,7 +349,7 @@ export default function Gallery() {
     container.style.cursor = "auto";
 
     const imgSrc = item.querySelector("img").src;
-    const imgMatch = imgSrc.match(/\/img(\d+)\.jpg/);
+    const imgMatch = imgSrc.match(/\/archive-(\d+)\.jpg/);
     const imgNum = imgMatch ? parseInt(imgMatch[1]) : 1;
     const titleIndex = (imgNum - 1) % items.length;
 

@@ -44,7 +44,7 @@ const AnniversaryProgram = memo(() => {
             <div className="program-icon">
               <SparklesIcon className="icon" />
             </div>
-            <h3>Gala dinner</h3>
+            <h3>Dạ tiệc kỷ niệm</h3>
             <p>Bữa tiệc gặp gỡ và giao lưu giữa các thế hệ</p>
           </div>
         </div>

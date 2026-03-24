@@ -1,66 +1,79 @@
 import "./globals.css";
 import "./vmu-colors.css";
+
 import ClientLayout from "@/client-layout";
-import TopBar from "@/components/TopBar/TopBar";
 import ClientOnly from "@/components/ClientOnly/ClientOnly";
 import StructuredData from "@/components/StructuredData/StructuredData";
+import TopBar from "@/components/TopBar/TopBar";
+import {
+  defaultOgImage,
+  siteCopyright,
+  siteCreator,
+  siteDescription,
+  siteKeywords,
+  siteLanguage,
+  siteLocale,
+  siteName,
+  sitePublisher,
+  siteThemeColor,
+  siteTitle,
+  siteUrl,
+} from "@/data/seo";
 
 export const metadata = {
-  title: "Kỷ niệm 70 năm VMU | 6/9/2025 - Trường Đại học Hàng hải Việt Nam",
-  description: "Chào mừng kỷ niệm 70 năm thành lập Trường Đại học Hàng hải Việt Nam (1956-2026). Sự kiện đặc biệt ngày 6/9/2025 với lễ công nhận trường trọng điểm quốc gia về đào tạo, nghiên cứu phục vụ phát triển bền vững kinh tế biển.",
-  keywords: [
-    "VMU", "Trường Đại học Hàng hải Việt Nam", "kỷ niệm 70 năm", "6/9/2025", 
-    "trường trọng điểm quốc gia", "kinh tế biển", "đào tạo hàng hải", "Hải Phòng",
-    "nghiên cứu biển", "phát triển bền vững", "thành tựu 70 năm", "lịch sử VMU"
-  ],
-  authors: [{ name: "The Wiii Lab" }],
-  creator: "The Wiii Lab",
-  publisher: "Trường Đại học Hàng hải Việt Nam",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  applicationName: siteName,
+  keywords: siteKeywords,
+  authors: [{ name: siteCreator }],
+  creator: siteCreator,
+  publisher: sitePublisher,
+  category: "education",
+  classification: "Education",
+  referrer: "origin-when-cross-origin",
+  manifest: "/manifest.webmanifest",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://kiniem70nam.vmu.holihu.online'),
   alternates: {
-    canonical: 'https://kiniem70nam.vmu.holihu.online',
+    canonical: siteUrl,
   },
   openGraph: {
-    title: "Kỷ niệm 70 năm VMU | 6/9/2025 - Trường Đại học Hàng hải Việt Nam",
-    description: "Chào mừng kỷ niệm 70 năm thành lập Trường Đại học Hàng hải Việt Nam (1956-2026). Sự kiện đặc biệt ngày 6/9/2025 với lễ công nhận trường trọng điểm quốc gia.",
-    url: 'https://kiniem70nam.vmu.holihu.online',
-    siteName: 'VMU 70 Năm',
-    images: [
-      {
-        url: '/logos/terrene-logo.png',
-        width: 1200,
-        height: 630,
-        alt: 'VMU 70 Năm - Trường Đại học Hàng hải Việt Nam',
-      },
-    ],
-    locale: 'vi_VN',
-    type: 'website',
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName,
+    locale: siteLocale,
+    type: "website",
+    images: [defaultOgImage],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: "Kỷ niệm 70 năm VMU | 6/9/2025",
-    description: "Chào mừng kỷ niệm 70 năm thành lập Trường Đại học Hàng hải Việt Nam (1956-2026).",
-    images: ['/logos/terrene-logo.png'],
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [defaultOgImage.url],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+  appleWebApp: {
+    capable: true,
+    title: siteName,
+    statusBarStyle: "default",
   },
-  verification: {
-    google: 'your-google-verification-code',
+  other: {
+    copyright: siteCopyright,
+    "content-language": siteLanguage,
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: siteThemeColor,
 };
 
 export default function RootLayout({ children }) {
@@ -70,7 +83,7 @@ export default function RootLayout({ children }) {
         <StructuredData />
       </head>
       <body suppressHydrationWarning>
-        <ClientLayout 
+        <ClientLayout
           topBar={
             <ClientOnly>
               <TopBar />

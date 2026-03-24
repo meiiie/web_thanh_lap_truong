@@ -13,126 +13,85 @@ const page = () => {
     <>
       <Nav />
       <div className="page studio">
+        {/* Hero — Sứ mệnh (unique, không trùng homepage) */}
         <section className="studio-hero">
           <div className="container">
             <div className="studio-hero-col">
-              <Copy delay={0.85}>
-                <p>
-                  Trong suốt 70 năm qua, VMU đã không ngừng phát triển và đổi mới, 
-                  trở thành một trong những trường đại học hàng hải hàng đầu Việt Nam 
-                  với sứ mệnh đào tạo nguồn nhân lực chất lượng cao cho ngành hàng hải.
-                </p>
+              <Copy delay={0.5}>
+                <p style={{textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.08em', fontSize: '0.9rem', color: 'var(--vmu-primary)'}}>Sứ mệnh của VMU</p>
               </Copy>
             </div>
             <div className="studio-hero-col">
-              <Copy delay={0.85}>
+              <Copy delay={0.6}>
                 <h2>
-                  Với vị thế mới là trường trọng điểm quốc gia về đào tạo, nghiên cứu 
-                  phục vụ phát triển bền vững kinh tế biển, VMU tiếp tục khẳng định 
-                  vai trò tiên phong trong việc đào tạo những thế hệ sinh viên có kiến 
-                  thức chuyên môn vững vàng, kỹ năng thực hành cao và tinh thần đổi mới sáng tạo.
+                  Đào tạo nguồn nhân lực chất lượng cao, nghiên cứu khoa học
+                  và chuyển giao công nghệ phục vụ phát triển bền vững kinh tế
+                  biển Việt Nam.
                 </h2>
               </Copy>
               <div className="studio-hero-hero-img">
-                <img src="/studio/about-hero.png" alt="VMU 70 năm phát triển" />
+                <img src="/vmu/official/home-hero.jpg" alt="Lễ kỷ niệm tại Trường Đại học Hàng hải Việt Nam" />
               </div>
             </div>
           </div>
         </section>
-        <section className="more-facts">
+
+        {/* Vị thế — Unique content about national key university */}
+        <section className="vmu-identity">
           <div className="container">
-            <div className="more-facts-header">
-              <Copy delay={0.1}>
-                <h2>70 năm thành tựu nổi bật</h2>
-                <p>Những con số ấn tượng thể hiện sự phát triển vượt bậc của VMU</p>
-              </Copy>
-            </div>
-            <div className="more-facts-items">
-              <div className="fact">
+            <div className="vmu-identity-grid">
+              <div className="vmu-identity-main">
                 <Copy delay={0.1}>
-                  <p>Năm thành lập</p>
-                  <h2>1956</h2>
-                </Copy>
-              </div>
-              <div className="fact">
-                <Copy delay={0.2}>
-                  <p>Khóa sinh viên</p>
-                  <h2>70+</h2>
-                </Copy>
-              </div>
-              <div className="fact">
-                <Copy delay={0.3}>
-                  <p>Chuyên ngành đào tạo</p>
-                  <h2>25+</h2>
-                </Copy>
-              </div>
-              <div className="fact">
-                <Copy delay={0.4}>
-                  <p>Cựu sinh viên</p>
-                  <h2>50k+</h2>
-                </Copy>
-              </div>
-              <div className="fact">
-                <Copy delay={0.5}>
-                  <p>Đối tác quốc tế</p>
-                  <h2>30+</h2>
-                </Copy>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="vmu-history">
-          <div className="container">
-            <div className="vmu-history-content">
-              <div className="vmu-history-text">
-                <Copy delay={0.1}>
-                  <h2>Hành trình 70 năm phát triển</h2>
+                  <h2>Trường trọng điểm quốc gia về kinh tế biển</h2>
                   <p>
-                    Từ những ngày đầu thành lập năm 1956 tại Hải Phòng, VMU đã không ngừng 
-                    phát triển và đổi mới. Ngày 05/9/2025, trường vinh dự đón nhận Quyết định 
-                    của Thủ tướng Chính phủ về việc phê duyệt Đề án xây dựng VMU là trường 
-                    trọng điểm quốc gia về đào tạo, nghiên cứu phục vụ phát triển bền vững 
-                    kinh tế biển.
+                    Ngày 05/9/2025, Thủ tướng Chính phủ ký Quyết định 1901/QĐ-TTg
+                    phê duyệt Đề án xây dựng Trường Đại học Hàng hải Việt Nam thành
+                    trường trọng điểm quốc gia về đào tạo, nghiên cứu phục vụ phát
+                    triển bền vững kinh tế biển giai đoạn đến năm 2030, tầm nhìn đến
+                    năm 2045.
                   </p>
                 </Copy>
               </div>
-              <div className="vmu-history-timeline">
-                <div className="timeline-item">
-                  <div className="timeline-year">1956</div>
-                  <div className="timeline-content">
-                    <h3>Thành lập trường</h3>
-                    <p>Trường Đại học Hàng hải Việt Nam được thành lập tại Hải Phòng</p>
-                  </div>
+              <div className="vmu-identity-cards">
+                <div className="identity-card">
+                  <Copy delay={0.15}>
+                    <h3>Đào tạo</h3>
+                    <p>Hàng hải, logistics, cơ khí, đóng tàu, điện - điện tử, CNTT, kinh tế, quản trị</p>
+                  </Copy>
                 </div>
-                <div className="timeline-item">
-                  <div className="timeline-year">2025</div>
-                  <div className="timeline-content">
-                    <h3>Trường trọng điểm quốc gia</h3>
-                    <p>Đón nhận quyết định của Thủ tướng Chính phủ</p>
-                  </div>
+                <div className="identity-card">
+                  <Copy delay={0.2}>
+                    <h3>Nghiên cứu</h3>
+                    <p>Cảng biển, vận tải, an toàn hàng hải, công nghệ tàu thủy, phát triển bền vững</p>
+                  </Copy>
                 </div>
-                <div className="timeline-item">
-                  <div className="timeline-year">2026</div>
-                  <div className="timeline-content">
-                    <h3>Kỷ niệm 70 năm</h3>
-                    <p>Chào mừng 70 năm thành lập với tầm nhìn mới</p>
-                  </div>
+                <div className="identity-card">
+                  <Copy delay={0.25}>
+                    <h3>Hợp tác quốc tế</h3>
+                    <p>Liên kết hơn 50 trường đại học và tổ chức hàng hải quốc tế</p>
+                  </Copy>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Quy trình đào tạo — unique to this page */}
         <section className="how-we-work-container">
           <div className="container">
             <HowWeWork />
           </div>
         </section>
+
+        {/* CTA → Sự kiện */}
         <CTAWindow
-          img="/studio/about-cta-window.jpg"
-          header="Thư viện VMU"
-          callout="70 năm lịch sử và thành tựu"
-          description="Khám phá hành trình 70 năm phát triển của VMU qua những tài liệu, hình ảnh và câu chuyện đầy cảm hứng. Từ những ngày đầu thành lập đến vị thế trường trọng điểm quốc gia ngày nay."
+          img="/vmu/official/event-1.jpg"
+          header="Sự kiện 70 năm"
+          callout="01/04/2026 — Lễ kỷ niệm chính thức"
+          description="Tham gia cùng cộng đồng VMU trong chuỗi hoạt động kỷ niệm 70 năm thành lập Trường Đại học Hàng hải Việt Nam."
         />
+
+        {/* Spotlight gallery — campus showcase */}
         <Spotlight />
       </div>
       <ConditionalFooter />

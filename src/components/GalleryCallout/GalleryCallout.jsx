@@ -10,10 +10,10 @@ const GalleryCallout = memo(() => {
         <div className="gallery-callout-col">
           <div className="gallery-callout-row">
             <div className="gallery-callout-img gallery-callout-img-1">
-              <img src="/gallery-callout/gallery-callout-1.jpg" alt="VMU Campus" />
+              <img src="/vmu/official/archive-1.jpg" alt="VMU Campus" />
             </div>
             <div className="gallery-callout-img gallery-callout-img-2">
-              <img src="/gallery-callout/gallery-callout-2.jpg" alt="Students" />
+              <img src="/vmu/official/archive-2.jpg" alt="Students" />
               <div className="gallery-callout-img-content">
                 <h3>70+</h3>
                 <p>Năm lịch sử</p>
@@ -22,10 +22,10 @@ const GalleryCallout = memo(() => {
           </div>
           <div className="gallery-callout-row">
             <div className="gallery-callout-img gallery-callout-img-3">
-              <img src="/gallery-callout/gallery-callout-3.jpg" alt="Research" />
+              <img src="/vmu/official/home-campus.jpg" alt="Research" />
             </div>
             <div className="gallery-callout-img gallery-callout-img-4">
-              <img src="/gallery-callout/gallery-callout-4.jpg" alt="Graduation" />
+              <img src="/vmu/official/about-history-1.jpg" alt="Graduation" />
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@ const GalleryCallout = memo(() => {
                 ảnh kể một câu chuyện về sự trưởng thành và thành công.
               </h3>
             </Copy>
-            <AnimatedButton label="Khám phá thư viện" route="/70-nam" />
+            <AnimatedButton label="Khám phá thư viện" route="/thu-vien" />
           </div>
         </div>
       </div>

@@ -1,0 +1,189 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 0 var(--sp-lg);
+}
+
+.site-header__shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--sp-md) 0;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  transition: border-color var(--duration-mid) ease;
+}
+
+.site-header.is-scrolled .site-header__shell {
+  border-color: rgba(10, 37, 64, 0.1);
+}
+
+.site-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--ink-950);
+}
+
+.site-header__logo {
+  position: relative;
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.site-header__logo-image {
+  object-fit: contain;
+}
+
+.site-header__brand-copy {
+  display: grid;
+  gap: 0.05rem;
+}
+
+.site-header__eyebrow {
+  color: var(--ink-500);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-header__brand strong {
+  color: var(--ink-950);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: 0.125rem;
+}
+
+.site-header__nav a,
+.site-header__mobile-inner a {
+  padding: 0.5rem 0.75rem;
+  color: var(--ink-500);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  transition: color var(--duration-fast) ease;
+}
+
+.site-header__nav a:hover,
+.site-header__nav a.is-active,
+.site-header__mobile-inner a:hover,
+.site-header__mobile-inner a.is-active {
+  color: var(--ink-950);
+}
+
+.site-header__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-header__date {
+  color: var(--ink-300);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+}
+
+.site-header__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 1rem;
+  border: 1px solid var(--ink-300);
+  border-radius: 999px;
+  color: var(--ink-950);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all var(--duration-fast) ease;
+}
+
+.site-header__cta:hover {
+  border-color: var(--brand-700);
+  color: var(--brand-700);
+}
+
+.site-header__toggle {
+  display: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0.5rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.site-header__toggle span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--ink-950);
+  transition: transform var(--duration-fast) ease, opacity var(--duration-fast) ease;
+}
+
+.site-header__toggle span + span { margin-top: 0.3rem; }
+.site-header__toggle.is-open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.site-header__toggle.is-open span:nth-child(2) { opacity: 0; }
+.site-header__toggle.is-open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+.site-header__mobile {
+  display: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--sp-sm) 0;
+}
+
+.site-header__mobile-inner {
+  display: grid;
+  gap: 0;
+  padding: var(--sp-md) 0;
+  border-top: 1px solid var(--line);
+  background: var(--surface-0);
+}
+
+.site-header__mobile-label {
+  color: var(--ink-300);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.site-header__mobile-cta {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ink-300);
+  border-radius: 999px;
+  color: var(--ink-950);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  width: fit-content;
+}
+
+@media (max-width: 1080px) {
+  .site-header__nav, .site-header__date, .site-header__cta { display: none; }
+  .site-header__toggle { display: block; }
+  .site-header__mobile { display: none; }
+  .site-header__mobile.is-open { display: block; }
+}
+
+@media (max-width: 760px) {
+  .site-header { padding: 0 var(--sp-md); }
+}

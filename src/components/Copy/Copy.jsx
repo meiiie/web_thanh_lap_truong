@@ -41,6 +41,8 @@ export default function Copy({ children, animateOnScroll = true, delay = 0 }) {
       const initializeSplitText = async () => {
         await waitForFonts();
 
+        if (!containerRef.current) return;
+
         splitRefs.current = [];
         lines.current = [];
         elementRefs.current = [];
@@ -53,6 +55,7 @@ export default function Copy({ children, animateOnScroll = true, delay = 0 }) {
         }
 
         elements.forEach((element) => {
+          if (!element || !element.textContent) return;
           elementRefs.current.push(element);
 
           const split = SplitText.create(element, {
