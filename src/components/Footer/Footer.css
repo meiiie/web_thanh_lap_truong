@@ -130,10 +130,8 @@
 }
 
 .footer .footer-outro .footer-header img {
-  width: min(50vw, 400px);
   height: auto;
   display: block;
-  object-fit: contain;
 }
 
 .footer-copyright {
