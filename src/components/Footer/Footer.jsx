@@ -139,8 +139,8 @@ const Footer = () => {
         <div className="container">
           <div className="footer-header">
             <img
-              src="/logos/Logo-truong.png"
-              alt="Logo Trường Đại học Hàng hải Việt Nam"
+              src="/logos/vimaru-logo.svg"
+              alt="VIMARU — Trường Đại học Hàng hải Việt Nam"
             />
           </div>
           <div className="footer-copyright">
