@@ -130,7 +130,7 @@
 }
 
 .footer .footer-outro .footer-header img {
-  width: 4.5rem;
+  width: min(50vw, 400px);
   height: auto;
   display: block;
   object-fit: contain;
