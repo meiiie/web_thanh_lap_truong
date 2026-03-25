@@ -15,13 +15,13 @@ export default function manifest() {
     categories: ["education", "university", "event"],
     icons: [
       {
-        src: "/logos/Logo-truong.png",
+        src: "/logos/logo-70-nam-200.png",
         sizes: "192x192",
         type: "image/png",
         purpose: "any maskable",
       },
       {
-        src: "/logos/Logo-truong.png",
+        src: "/logos/logo-70-nam-200.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "any maskable",

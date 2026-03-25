@@ -76,7 +76,7 @@ const TopBar = () => {
             navigateWithTransition("/");
           }}
         >
-          <img src="/logos/Logo-truong.png" alt="Trường Đại học Hàng hải Việt Nam" />
+          <img src="/logos/logo-70-nam-200.png" alt="70 năm VMU — 1956-2026" />
         </a>
       </div>
       <div className="top-bar-nav">
